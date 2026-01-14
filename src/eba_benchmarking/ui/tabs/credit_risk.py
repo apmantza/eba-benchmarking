@@ -117,7 +117,8 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     # Export options
     col_dl1, col_dl2 = st.columns(2)
     with col_dl1:
-        csv = df.to_csv(index=False).encode('utf-8')
+        # Use display dataframe for export to include labels
+        csv = df_display[cols_order].to_csv(index=False).encode('utf-8')
         st.download_button(
             "📥 Download CSV",
             csv,
@@ -130,7 +131,7 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
         # Excel export
         buffer = io.BytesIO()
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-            df.to_excel(writer, sheet_name='Data', index=False)
+            df_display[cols_order].to_excel(writer, sheet_name='Data', index=False)
         
         st.download_button(
             label="📊 Download Excel",
