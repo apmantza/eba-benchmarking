@@ -27,9 +27,13 @@ def render_rwa_tab(selected_leis, base_bank_name, base_country, base_size, base_
         base_rwa_lat = df_rwa_lat[df_rwa_lat['name'] == base_bank_name].iloc[0] if not df_rwa_lat[df_rwa_lat['name'] == base_bank_name].empty else None
         if base_rwa_lat is not None:
             c1, c2, c3 = st.columns(3)
-            c1.metric("Total RWA (TREA)", f"€{base_rwa_lat['TREA']/1e6:,.0f}M")
+            # TREA is in millions in DB. Display in Billions.
+            c1.metric("Total RWA (TREA)", f"€{base_rwa_lat['TREA']/1000:,.1f}B")
             c2.metric("RWA Density", f"{base_rwa_lat.get('RWA Density', 0):.1%}")
-            c3.metric("Total Assets", f"€{base_rwa_lat.get('total_assets', 0)/1e6:,.0f}M")
+            
+            # Total Assets is in Millions. Display in Billions.
+            total_assets_val = base_rwa_lat.get('total_assets', 0)
+            c3.metric("Total Assets", f"€{total_assets_val/1000:,.1f}B")
             st.divider()
         
         # Row 1: Total RWA
@@ -105,7 +109,16 @@ def render_rwa_tab(selected_leis, base_bank_name, base_country, base_size, base_
         
         # Download
         st.markdown("### 📥 Download RWA Dataset")
-        csv = df_rwa.to_csv(index=False).encode('utf-8')
+        # Combine Main RWA data and Composition Data
+        df_rwa_exp = pd.concat([df_rwa, df_rwa_bench], ignore_index=True)
+        if not df_rwa_raw.empty:
+            # Pivot raw composition for easier view
+             df_rwa_pivot = df_rwa_raw.pivot_table(
+                    index=['name', 'lei', 'period'], columns='label', values='amount', aggfunc='sum'
+             ).reset_index()
+             df_rwa_exp = pd.merge(df_rwa_exp, df_rwa_pivot, on=['name', 'lei', 'period'], how='left')
+             
+        csv = df_rwa_exp.to_csv(index=False).encode('utf-8')
         st.download_button("📥 Download RWA Data (CSV)", data=csv, file_name='eba_benchmarking_rwa.csv', mime='text/csv')
     else:
         st.warning("No RWA data found.")

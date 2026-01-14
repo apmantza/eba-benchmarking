@@ -27,6 +27,16 @@ def render_solvency_tab(selected_leis, base_bank_name, base_country, base_size, 
         # Latest benchmarks
         df_bench_latest = df_solv_bench[df_solv_bench['period'] == latest_solv] if not df_solv_bench.empty else None
         
+        # Highlights
+        base_solv_lat = df_sl_latest[df_sl_latest['name'] == base_bank_name].iloc[0] if not df_sl_latest[df_sl_latest['name'] == base_bank_name].empty else None
+        if base_solv_lat is not None:
+             c1, c2, c3, c4 = st.columns(4)
+             c1.metric("Total Capital Ratio", f"{base_solv_lat['Total Capital Ratio']:.1%}")
+             c2.metric("CET1 Ratio", f"{base_solv_lat['CET1 Ratio']:.1%}")
+             c3.metric("Leverage Ratio", f"{base_solv_lat['Leverage Ratio']:.1%}")
+             c4.metric("Total Capital", f"€{base_solv_lat['Total Capital']/1e6:,.0f}M")
+             st.divider()
+
         # Row 1: Capital Components (Amounts)
         st.markdown("### 🏦 Capital Components")
         c1, c2 = st.columns(2)
@@ -59,8 +69,8 @@ def render_solvency_tab(selected_leis, base_bank_name, base_country, base_size, 
         # st.markdown("### ⚖️ RWA Density (Risk Intensity)")
         # ...
         
-        # Row 5: Texas Ratio (Distress Indicator)
-        st.markdown("### 🔥 Texas Ratio (Distress Indicator)")
+        # Row 5: Texas Ratio
+        st.markdown("### 🔥 Texas Ratio")
         # Removed info note as per request
         
         # Fetch solvency with Texas Ratio

@@ -22,6 +22,31 @@ def render_asset_quality_tab(selected_leis, base_bank_name, base_country, base_s
     if not df_std.empty:
         latest = df_std['period'].max()
         
+        # Highlights
+        base_aq_lat = df_std[df_std['name'] == base_bank_name].sort_values('period').iloc[-1] if not df_std[df_std['name'] == base_bank_name].empty else None
+        
+        # Need Stage 2 / 3 data for highlights which is in df_aq_bk
+        df_aq_bk = get_aq_breakdown(selected_leis)
+        base_aq_bk_lat = None
+        if not df_aq_bk.empty:
+             base_aq_sorted = df_aq_bk[df_aq_bk['name'] == base_bank_name].sort_values('period')
+             if not base_aq_sorted.empty:
+                base_aq_bk_lat = base_aq_sorted.iloc[-1]
+        
+        if base_aq_lat is not None:
+             c1, c2, c3, c4 = st.columns(4)
+             c1.metric("NPL Ratio", f"{base_aq_lat['npl_ratio']:.1%}")
+             
+             if base_aq_bk_lat is not None:
+                 c2.metric("Stage 3 Coverage", f"{base_aq_bk_lat.get('Stage 3 Coverage', 0):.1%}")
+                 c3.metric("Stage 2 Ratio", f"{base_aq_bk_lat.get('Stage 2 Ratio', 0):.1%}")
+                 c4.metric("Forborne Ratio", f"{base_aq_bk_lat.get('Forborne Ratio', 0):.1%}")
+             else:
+                 c2.metric("Stage 3 Coverage", "-")
+                 c3.metric("Stage 2 Ratio", "-")
+                 c4.metric("Forborne Ratio", "-")
+             st.divider()
+
         # Row 1: NPL Ratio
         st.markdown("### ☣️ NPL Ratio")
         c1, c2 = st.columns(2)
@@ -41,7 +66,7 @@ def render_asset_quality_tab(selected_leis, base_bank_name, base_country, base_s
             
         # Row 2: Coverage Ratios
         st.markdown("### 🛡️ Coverage Ratios (Prudence)")
-        df_aq_bk = get_aq_breakdown(selected_leis)
+        # df_aq_bk fetched above for highlights
         df_aq_bk_avg = get_aq_breakdown_averages(base_country, base_region, base_sys, base_size)
         
         if not df_aq_bk.empty:

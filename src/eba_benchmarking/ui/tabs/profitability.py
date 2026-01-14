@@ -52,12 +52,11 @@ def render_profitability_tab(selected_leis, base_bank_name, base_country, base_s
         base_prof_lat = df_p_lat[df_p_lat['name'] == base_bank_name].iloc[0] if not df_p_lat[df_p_lat['name'] == base_bank_name].empty else None
         
         if base_prof_lat is not None:
-            c1, c2, c3, c4, c5 = st.columns(5)
+            c1, c2, c3, c4 = st.columns(4)
             c1.metric("RoE (Annualized)", f"{base_prof_lat['RoE (Annualized)']:.1%}")
             c2.metric("RoA (Annualized)", f"{base_prof_lat['RoA (Annualized)']:.2%}")
             c3.metric("RoRWA (Annualized)", f"{base_prof_lat.get('RoRWA (Annualized)', 0):.2%}")
             c4.metric("Cost-to-Income", f"{base_prof_lat['Cost to Income']:.1%}")
-            c5.metric("Net Profit (YTD)", f"€{base_prof_lat['Net Profit']/1e6:,.0f}M")
             st.divider()
 
         # 3. Row 1: Return on Equity (RoE) - Annualized
@@ -97,31 +96,29 @@ def render_profitability_tab(selected_leis, base_bank_name, base_country, base_s
         st.markdown("### ⚙️ Efficiency & Asset Productivity")
         c5, c6 = st.columns(2)
         with c5:
-            # Cost to Income (Existing)
+            # Cost to Income Plot
             df_cir = df_p_lat[['name', 'Cost to Income']].copy()
             if df_pb_lat is not None:
                 df_cir = pd.concat([df_cir, df_pb_lat[['name', 'Cost to Income']]], ignore_index=True)
             st.plotly_chart(plot_benchmark_bar(df_cir, 'Cost to Income', "Cost-to-Income Ratio (Latest)", base_bank_name, format_pct=True), width='stretch')
         with c6:
-            # Net Fees / Assets (New)
+            # Cost to Income Trend
+            st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Cost to Income', "Cost-to-Income Trend", base_bank_name, df_eu_kris), width='stretch')
+        
+        c_fee1, c_fee2 = st.columns(2)
+        with c_fee1:
+            # Net Fees / Assets Plot
             df_fees = df_p_lat[['name', 'Net Fees / Assets (Annualized)']].copy()
             if df_pb_lat is not None:
                 df_fees = pd.concat([df_fees, df_pb_lat[['name', 'Net Fees / Assets (Annualized)']]], ignore_index=True)
             st.plotly_chart(plot_benchmark_bar(df_fees, 'Net Fees / Assets (Annualized)', "Net Fees / Assets (Annualized)", base_bank_name, format_pct=True), width='stretch')
-        with c6:
-            # Trend for Net Fees / Assets
+        with c_fee2:
+            # Net Fees / Assets Trend
             st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Net Fees / Assets (Annualized)', "Net Fees / Assets Trend", base_bank_name), width='stretch')
 
-        # NEW: Sell-Side Jaws & Cost to Income Trend
-        st.markdown("### 📈 Operational Efficiency Trends")
-        cJ1, cJ2 = st.columns(2)
-        with cJ1:
-            st.markdown("#### Cost-to-Income Trend")
-            st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Cost to Income', "Cost-to-Income Trend", base_bank_name, df_eu_kris), width='stretch')
-        with cJ2:
-            st.markdown("#### Jaws Ratio (Operational Leverage)")
-            # Removed info note
-            st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Jaws Ratio', "Jaws Ratio (YoY Income vs Exp Growth)", base_bank_name), width='stretch')
+        # Jaws Ratio as last plot
+        st.markdown("### 📈 Operational Leverage (Jaws)")
+        st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Jaws Ratio', "Jaws Ratio (YoY Income vs Exp Growth)", base_bank_name), width='stretch')
 
         # 6. Row 4: Risk Cost
         st.markdown("### 🛡️ Cost of Risk")
@@ -136,15 +133,6 @@ def render_profitability_tab(selected_leis, base_bank_name, base_country, base_s
             # Cost of Risk Trend
             st.plotly_chart(plot_solvency_trend(df_prof, df_prof_bench, 'Cost of Risk (Annualized)', "Cost of Risk Trend (Annualized)", base_bank_name, df_eu_kris), width='stretch')
 
-        # 7. Row 5: Operating Income Structure
-        st.markdown("### 🏗️ Operating Income Structure")
-        c7, c8 = st.columns(2)
-        with c7:
-            # 100% Stacked Bar for Income
-            st.plotly_chart(plot_operating_income_composition_percent(df_p_lat, base_bank_name, df_pb_lat), width='stretch')
-        with c8:
-            # Trend of Non-Interest Income
-            st.plotly_chart(plot_non_interest_income_trend(df_prof, base_bank_name, df_prof_bench), width='stretch')
 
         # Removed NII analysis, Profit Driver Analysis and Historical P&L Evolution as per request
         
