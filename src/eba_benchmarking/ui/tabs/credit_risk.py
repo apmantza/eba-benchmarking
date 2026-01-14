@@ -16,6 +16,48 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     # Fetch dimension maps for label display in filters
     dim_maps = get_dim_maps()
     
+    # --- SAVED PRESETS ---
+    if 'cre_presets' not in st.session_state:
+        st.session_state.cre_presets = {}
+        
+    with st.expander("💾 Saved Filter Presets", expanded=False):
+        c1, c2 = st.columns([3, 1])
+        with c1:
+             preset_name = st.text_input("New Preset Name", key="cre_preset_name", placeholder="e.g. NPLs by Portfolio")
+        with c2:
+            if st.button("Save Current Filters", key="cre_save_btn"):
+                if preset_name:
+                    current_filters = {
+                        'portfolio': st.session_state.get('cre_portfolio', []),
+                        'status': st.session_state.get('cre_status', []),
+                        'exposure': st.session_state.get('cre_exposure', []),
+                        'perf_status': st.session_state.get('cre_perf_status', []),
+                        'country': st.session_state.get('cre_country', []),
+                        'nace_codes': st.session_state.get('cre_nace', []),
+                        'item_id': st.session_state.get('cre_item_id', [])
+                    }
+                    st.session_state.cre_presets[preset_name] = current_filters
+                    st.success(f"Saved '{preset_name}'!")
+                else:
+                    st.warning("Enter a name!")
+                    
+        if st.session_state.cre_presets:
+            st.divider()
+            st.markdown("**Load Preset:**")
+            cols = st.columns(4)
+            for i, (name, saved_filters) in enumerate(st.session_state.cre_presets.items()):
+                with cols[i % 4]:
+                    if st.button(name, key=f"cre_load_{name}"):
+                        st.session_state.cre_portfolio = saved_filters.get('portfolio', [])
+                        st.session_state.cre_status = saved_filters.get('status', [])
+                        st.session_state.cre_exposure = saved_filters.get('exposure', [])
+                        st.session_state.cre_perf_status = saved_filters.get('perf_status', [])
+                        st.session_state.cre_country = saved_filters.get('country', [])
+                        st.session_state.cre_nace = saved_filters.get('nace_codes', [])
+                        st.session_state.cre_item_id = saved_filters.get('item_id', [])
+                        st.rerun()
+
+    # --- FILTERS ---
     with st.expander("🔎 Data Filters", expanded=True):
         # Fetch available options (IDs) based on selected LEIs
         options_map_ids = get_cre_filter_options(selected_leis)
@@ -24,15 +66,6 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
             st.error("No data found for the selected banks in the Credit Risk table.")
             return
 
-        # Helper to format options as "ID - Label"
-        def format_options(col_name, ids):
-            labels_map = dim_maps.get(col_name, {})
-            # Return list of tuples (id, display_label) or just list of display_labels?
-            # Streamlit selectbox options are just values. We can map them.
-            # But the filter query needs IDs.
-            # Best approach: Use format_func in st.multiselect if we pass IDs.
-            return ids
-        
         # Helper for format_func
         def get_label_func(col_name):
             labels_map = dim_maps.get(col_name, {})
@@ -46,6 +79,10 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
         
         filters = {}
 
+        # Use defaults from session state if available, handled implicitly by widget key persistence 
+        # BUT for programmatic updates (loading presets) we need to rely on the keys being set in session_state before render.
+        # Streamlit widgets with 'key' argument automatically read from session_state if the key exists.
+        
         with col1:
             filters['portfolio'] = st.multiselect("Portfolio", options=options_map_ids.get('portfolio', []), format_func=get_label_func('portfolio'), key="cre_portfolio")
             filters['status'] = st.multiselect("Status", options=options_map_ids.get('status', []), format_func=get_label_func('status'), key="cre_status")

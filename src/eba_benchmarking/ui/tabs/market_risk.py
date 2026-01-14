@@ -12,6 +12,41 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
         st.warning("Please select at least one bank to view data.")
         return
 
+    # --- SAVED PRESETS ---
+    if 'mrk_presets' not in st.session_state:
+        st.session_state.mrk_presets = {}
+        
+    with st.expander("💾 Saved Filter Presets", expanded=False):
+        c1, c2 = st.columns([3, 1])
+        with c1:
+             preset_name = st.text_input("New Preset Name", key="mrk_preset_name", placeholder="e.g. Trading Book Analysis")
+        with c2:
+            if st.button("Save Current Filters", key="mrk_save_btn"):
+                if preset_name:
+                    current_filters = {
+                        'portfolio': st.session_state.get('mrk_portfolio', []),
+                        'mkt_risk': st.session_state.get('mrk_risk', []),
+                        'mkt_modprod': st.session_state.get('mrk_prod', []),
+                        'item_id': st.session_state.get('mrk_item_id', [])
+                    }
+                    st.session_state.mrk_presets[preset_name] = current_filters
+                    st.success(f"Saved '{preset_name}'!")
+                else:
+                    st.warning("Enter a name!")
+                    
+        if st.session_state.mrk_presets:
+            st.divider()
+            st.markdown("**Load Preset:**")
+            cols = st.columns(4)
+            for i, (name, saved_filters) in enumerate(st.session_state.mrk_presets.items()):
+                with cols[i % 4]:
+                    if st.button(name, key=f"mrk_load_{name}"):
+                        st.session_state.mrk_portfolio = saved_filters.get('portfolio', [])
+                        st.session_state.mrk_risk = saved_filters.get('mkt_risk', [])
+                        st.session_state.mrk_prod = saved_filters.get('mkt_modprod', [])
+                        st.session_state.mrk_item_id = saved_filters.get('item_id', [])
+                        st.rerun()
+
     # --- FILTERS ---
     dim_maps = get_mrk_dim_maps()
     
