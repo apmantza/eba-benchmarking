@@ -76,19 +76,43 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     
     # Reorder columns to show Labels next to IDs, or hide IDs if preferred. 
     # Current query returns: lei, Bank, period, item_id, "Item Label", portfolio, "Portfolio Label", etc.
+    # Rename columns for cleaner display
+    df_display = df.copy()
+    rename_map = {
+        'Item Label': 'Item',
+        'Portfolio Label': 'Portfolio',
+        'Exposure Label': 'Exposure Class',
+        'Status Label': 'Status',
+        'Perf Status Label': 'Perf. Status',
+        'Country Label': 'Country',
+        'NACE Label': 'NACE Sector',
+        # Raw IDs
+        'item_id': 'Item ID',
+        'portfolio': 'Portfolio ID',
+        'exposure': 'Exposure ID',
+        'status': 'Status ID',
+        'perf_status': 'Perf. Status ID',
+        'country': 'Country Code',
+        'nace_codes': 'NACE Code'
+    }
+    df_display.rename(columns=rename_map, inplace=True)
+
+    # Reorder columns
     cols_order = [
         'period', 'Bank', 
-        'Item Label', 'item_id', 
-        'Portfolio Label', 'portfolio', 
-        'Exposure Label', 'exposure',
-        'Status Label', 'status',
-        'Perf Status Label', 'perf_status',
-        'Country Label', 'country',
-        'NACE Label', 'nace_codes',
-        'amount'
+        'Item', 
+        'Portfolio', 
+        'Exposure Class',
+        'Status',
+        'Perf. Status',
+        'Country',
+        'NACE Sector',
+        'amount',
+        # Raw IDs at end
+        'Item ID', 'Portfolio ID', 'Exposure ID', 'Status ID', 'Perf. Status ID', 'Country Code', 'NACE Code'
     ]
-    # Filter only columns causing errors if they don't exist? (The query guarantees these names)
-    st.dataframe(df[cols_order], use_container_width=True, height=500)
+    
+    st.dataframe(df_display[cols_order], use_container_width=True, height=500)
     
     # Export options
     col_dl1, col_dl2 = st.columns(2)

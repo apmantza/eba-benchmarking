@@ -60,16 +60,34 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     st.subheader(f"Results ({len(df)} rows)")
 
     # Added Item Label to display
+    # Rename columns for cleaner display
+    df_display = df.copy()
+    rename_map = {
+        'Item Label': 'Item',
+        'Portfolio Label': 'Portfolio',
+        'Product Label': 'Product',
+        'Risk Label': 'Risk Type',
+        # Raw IDs
+        'item_id': 'Item ID',
+        'portfolio': 'Portfolio ID',
+        'mkt_modprod': 'Product ID',
+        'mkt_risk': 'Risk Type ID'
+    }
+    df_display.rename(columns=rename_map, inplace=True)
+
+    # Reorder columns: Labels first, IDs at the end (optional)
     cols_order = [
         'period', 'Bank', 
-        'Item Label', 'item_id', 
-        'Portfolio Label', 'portfolio', 
-        'Product Label', 'mkt_modprod',
-        'Risk Label', 'mkt_risk',
-        'amount'
+        'Item', 
+        'Portfolio', 
+        'Product', 
+        'Risk Type', 
+        'amount',
+        # HIDDEN/End IDs
+        'Item ID', 'Portfolio ID', 'Product ID', 'Risk Type ID'
     ]
     
-    st.dataframe(df[cols_order], use_container_width=True, height=500)
+    st.dataframe(df_display[cols_order], use_container_width=True, height=500)
     
     # Export options
     col_dl1, col_dl2 = st.columns(2)
