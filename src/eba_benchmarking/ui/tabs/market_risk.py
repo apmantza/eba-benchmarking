@@ -46,7 +46,8 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
             filters['mkt_modprod'] = st.multiselect("Market Product", options=options_map_ids.get('mkt_modprod', []), format_func=get_label_func('mkt_modprod'), key="mrk_prod")
 
         with col4:
-             filters['item_id'] = st.multiselect("Item ID", options=options_map_ids.get('item_id', []), key="mrk_item_id")
+             # Added format_func for Item ID
+             filters['item_id'] = st.multiselect("Item ID", options=options_map_ids.get('item_id', []), format_func=get_label_func('item_id'), key="mrk_item_id")
 
     # --- DATA FETCHING ---
     df = get_mrk_data(selected_leis, filters)
@@ -58,8 +59,10 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     # --- DISPLAY & EXPORT ---
     st.subheader(f"Results ({len(df)} rows)")
 
+    # Added Item Label to display
     cols_order = [
-        'period', 'Bank', 'item_id', 
+        'period', 'Bank', 
+        'Item Label', 'item_id', 
         'Portfolio Label', 'portfolio', 
         'Product Label', 'mkt_modprod',
         'Risk Label', 'mkt_risk',

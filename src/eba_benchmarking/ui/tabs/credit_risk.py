@@ -61,7 +61,8 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
              filters['nace_codes'] = st.multiselect("NACE Codes", options=options_map_ids.get('nace_codes', []), format_func=get_label_func('nace_codes'), key="cre_nace")
         
         with col5:
-             filters['item_id'] = st.multiselect("Item ID", options=options_map_ids.get('item_id', []), key="cre_item_id")
+             # Added format_func for Item ID
+             filters['item_id'] = st.multiselect("Item ID", options=options_map_ids.get('item_id', []), format_func=get_label_func('item_id'), key="cre_item_id")
 
     # --- DATA FETCHING ---
     df = get_cre_data(selected_leis, filters)
@@ -73,13 +74,11 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     # --- DISPLAY & EXPORT ---
     st.subheader(f"Results ({len(df)} rows)")
     
-    # Total Amount display removed as requested
-
     # Reorder columns to show Labels next to IDs, or hide IDs if preferred. 
-    # Current query returns: lei, Bank, period, item_id, portfolio, "Portfolio Label", etc.
-    # Let's organize them nicely.
+    # Current query returns: lei, Bank, period, item_id, "Item Label", portfolio, "Portfolio Label", etc.
     cols_order = [
-        'period', 'Bank', 'item_id', 
+        'period', 'Bank', 
+        'Item Label', 'item_id', 
         'Portfolio Label', 'portfolio', 
         'Exposure Label', 'exposure',
         'Status Label', 'status',

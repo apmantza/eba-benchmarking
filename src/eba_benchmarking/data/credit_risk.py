@@ -56,6 +56,7 @@ def get_dim_maps():
     """
     Fetches all relevant dimension mappings (id -> label).
     Returns a dict of dicts: { 'dim_table': {id: label, ...}, ... }
+    Includes 'item_id' from the 'dictionary' table.
     """
     if not os.path.exists(DB_NAME):
         return {}
@@ -70,7 +71,8 @@ def get_dim_maps():
         'status': ('dim_status', 'status', 'label'),
         'perf_status': ('dim_perf_status', 'perf_status', 'label'),
         'country': ('dim_country', 'country', 'label'),
-        'nace_codes': ('dim_nace_codes', 'nace_codes', 'label')
+        'nace_codes': ('dim_nace_codes', 'nace_codes', 'label'),
+        'item_id': ('dictionary', 'item_id', 'label')  # Added dictionary map
     }
     
     try:
@@ -78,14 +80,9 @@ def get_dim_maps():
             try:
                 # Some tables might not exist or columns might differ slightly, fail gracefully per table
                 df = pd.read_sql(f"SELECT {id_col}, {label_col} FROM {table}", conn)
-                # Create map: str(id) -> label
                 maps[key] = pd.Series(df[label_col].values, index=df[id_col].astype(str)).to_dict()
             except Exception:
                 maps[key] = {}
-        
-        # Item labels are usually in a different structure or just raw IDs, 
-        # but if we have an item_labels table we could use it. 
-        # For now items are just IDs or handled elsewhere.
         
     except Exception as e:
         st.error(f"Error fetching dimension maps: {e}")
@@ -120,14 +117,15 @@ def get_cre_data(lei_list, filters=None):
     
     where_sql = " AND ".join(where_clauses)
     
-    # Updated query to left join all dims
-    # We use COALESCE to fallback to the ID if label is missing
+    # Updated query to left join 'dictionary' for item labels
     query = f"""
     SELECT 
         f.lei, 
         i.commercial_name as Bank, 
         f.period, 
-        f.item_id, 
+        
+        f.item_id,
+        COALESCE(d.label, f.item_id) as "Item Label",
         
         f.portfolio,
         COALESCE(dp.label, f.portfolio) as "Portfolio Label",
@@ -152,6 +150,7 @@ def get_cre_data(lei_list, filters=None):
     FROM facts_cre f
     JOIN institutions i ON f.lei = i.lei
     
+    LEFT JOIN dictionary d ON f.item_id = d.item_id
     LEFT JOIN dim_portfolio dp ON f.portfolio = dp.portfolio
     LEFT JOIN dim_exposure de ON f.exposure = de.exposure
     LEFT JOIN dim_status ds ON f.status = ds.status

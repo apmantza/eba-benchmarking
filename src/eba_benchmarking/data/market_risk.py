@@ -17,7 +17,6 @@ def get_mrk_filter_options(lei_list):
     conn = sqlite3.connect(DB_NAME)
     leis_str = "'" + "','".join([str(lei) for lei in lei_list]) + "'"
     
-    # Updated to valid column names: mkt_modprod instead of mkt_prod
     filter_cols = [
         'portfolio', 
         'mkt_modprod', 
@@ -50,6 +49,7 @@ def get_mrk_filter_options(lei_list):
 def get_mrk_dim_maps():
     """
     Fetches all relevant dimension mappings (id -> label) for Market Risk.
+    Includes item_id from dictionary.
     """
     if not os.path.exists(DB_NAME):
         return {}
@@ -58,11 +58,11 @@ def get_mrk_dim_maps():
     maps = {}
     
     # Mapping: filter_key -> (dim_table, id_col, label_col)
-    # facts_mrk has mkt_modprod
     dim_configs = {
         'portfolio': ('dim_portfolio', 'portfolio', 'label'),
         'mkt_modprod': ('dim_mkt_modprod', 'mkt_modprod', 'label'),
-        'mkt_risk': ('dim_mkt_risk', 'mkt_risk', 'label')
+        'mkt_risk': ('dim_mkt_risk', 'mkt_risk', 'label'),
+        'item_id': ('dictionary', 'item_id', 'label') # Added dictionary map
     }
     
     try:
@@ -106,13 +106,14 @@ def get_mrk_data(lei_list, filters=None):
     
     where_sql = " AND ".join(where_clauses)
     
-    # Updated query to use mkt_modprod
     query = f"""
     SELECT 
         f.lei, 
         i.commercial_name as Bank, 
         f.period, 
-        f.item_id, 
+        
+        f.item_id,
+        COALESCE(d.label, f.item_id) as "Item Label",
         
         f.portfolio,
         COALESCE(dp.label, f.portfolio) as "Portfolio Label",
@@ -128,6 +129,7 @@ def get_mrk_data(lei_list, filters=None):
     FROM facts_mrk f
     JOIN institutions i ON f.lei = i.lei
     
+    LEFT JOIN dictionary d ON f.item_id = d.item_id
     LEFT JOIN dim_portfolio dp ON f.portfolio = dp.portfolio
     LEFT JOIN dim_mkt_modprod dmp ON f.mkt_modprod = dmp.mkt_modprod
     LEFT JOIN dim_mkt_risk dmr ON f.mkt_risk = dmr.mkt_risk
