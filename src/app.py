@@ -168,7 +168,8 @@ with tabs[5]:
 with tabs[6]:
     render_generic_tab("Market Risk", selected_leis)
 with tabs[7]:
-    render_generic_tab("Credit Risk", selected_leis)
+    from eba_benchmarking.ui.tabs.credit_risk import render_credit_risk_tab
+    render_credit_risk_tab(selected_leis, base_bank_name)
 
 # 8. SOVEREIGN TAB
 with tabs[8]:
