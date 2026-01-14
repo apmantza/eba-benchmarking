@@ -107,9 +107,7 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
         'Perf. Status',
         'Country',
         'NACE Sector',
-        'amount',
-        # Raw IDs at end
-        'Item ID', 'Portfolio ID', 'Exposure ID', 'Status ID', 'Perf. Status ID', 'Country Code', 'NACE Code'
+        'amount'
     ]
     
     st.dataframe(df_display[cols_order], use_container_width=True, height=500)

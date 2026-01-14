@@ -75,16 +75,14 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     }
     df_display.rename(columns=rename_map, inplace=True)
 
-    # Reorder columns: Labels first, IDs at the end (optional)
+    # Reorder columns: Labels first
     cols_order = [
         'period', 'Bank', 
         'Item', 
         'Portfolio', 
         'Product', 
         'Risk Type', 
-        'amount',
-        # HIDDEN/End IDs
-        'Item ID', 'Portfolio ID', 'Product ID', 'Risk Type ID'
+        'amount'
     ]
     
     st.dataframe(df_display[cols_order], use_container_width=True, height=500)
