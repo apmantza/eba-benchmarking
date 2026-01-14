@@ -120,7 +120,7 @@ if not df_std.empty:
 # TABS
 tabs_list = [
     "📊 Benchmarking Dashboard",
-    "Executive Insights",
+    "🔎 Deep-Dive Explorer",
     "Solvency", 
     "Asset Quality", 
     "RWA", 
@@ -141,9 +141,11 @@ tabs = st.tabs(tabs_list)
 with tabs[0]:
     render_benchmarking_dashboard_tab(base_lei, base_bank_name, base_country, base_region, base_sys, base_size)
 
-# 1. EXECUTIVE INSIGHTS
+# 1. DEEP-DIVE EXPLORER
 with tabs[1]:
-    render_insights_tab(base_bank_name, df_std)
+    # Import locally to avoid circular dependency issues if any
+    from eba_benchmarking.ui.tabs.benchmarking_dashboard import render_custom_explorer
+    render_custom_explorer(base_lei, base_bank_name, base_country, base_region, base_sys, base_size)
 
 # 2. SOLVENCY TAB
 with tabs[2]:

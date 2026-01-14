@@ -850,7 +850,10 @@ def get_all_benchmarking_metrics(lei_list):
 
     
 
-    df['Funding Spread'] = df['Cost of Wholesale'] - df['Cost of Deposits']
+    df['Funding Cost'] = df.apply(
+        lambda x: (x['Interest Expenses'] / (x['Total Assets'] - x['Total Equity'])) * x['ann_factor'] if (x['Total Assets'] - x['Total Equity']) > 0 else 0,
+        axis=1
+    )
 
     
 
@@ -1191,105 +1194,53 @@ def get_all_benchmarking_metrics(lei_list):
 # higher_is_better: True = higher is better, False = lower is better, None = neutral
 
 BENCHMARKING_METRICS = {
-
-    'Profitability': [
-
+    '📈 Profitability': [
         ('NIM', 'Net Interest Margin', True),
-
         ('Int Inc / Assets', 'Interest Income / Assets', True),
-
         ('Int Exp / Assets', 'Interest Expense / Assets', False),
-
         ('Cost / Income', 'Cost / Income Ratio', False),
-
-        ('Admin / Total Exp', 'Admin / Total Expenses', False),
-
+        ('Admin / Total Exp', 'Admin / Total Expenses', True),
         ('Cost of Risk', 'Cost of Risk', False),
-
         ('RoA', 'Return on Assets', True),
-
         ('RoE', 'Return on Equity', True),
-
         ('RoRWA', 'Return on RWA', True),
-
     ],
-
-    'Fee Business (New)': [
-
+    '💰 Fee Business': [
         ('Net Fee Inc / Total Inc', 'Net Fees / Total Income', True),
-
         ('Net Fee Inc / Assets', 'Net Fees / Total Assets', True),
-
     ],
-
-    'Funding Costs (New)': [
-
+    '📉 Funding Costs': [
         ('Cost of Deposits', 'Cost of Deposits', False),
-
-        ('Cost of Wholesale', 'Cost of Wholesale Funding', False),
-
-        ('Funding Spread', 'Wholesale vs. Deposit Cost Spread', False),
-
+        ('Funding Cost', 'Funding Cost', False),
     ],
-
-    'Capital & Leverage': [
-
+    '🏛️ Capital & Leverage': [
         ('CET1 Ratio', 'CET1 Ratio', True),
-
         ('Tier 1 Ratio', 'Tier 1 Ratio', True),
-
         ('Total Capital Ratio', 'Total Capital Ratio', True),
-
         ('Leverage Ratio', 'Leverage Ratio', True),
-
-        ('RWA Density', 'RWA Density', False),
-
+        ('RWA Density', 'RWA Density', True),
     ],
-
-    'Asset Quality': [
-
+    '🛡️ Asset Quality': [
         ('NPE Ratio', 'NPE Ratio', False),
-
         ('NPL Coverage', 'NPL Coverage Ratio', True),
-
         ('Total Coverage', 'Total Coverage Ratio', True),
-
         ('Texas Ratio', 'Texas Ratio', False),
-
         ('Forborne Ratio', 'Forborne Ratio', False),
-
     ],
-
-    'Concentration': [
-
+    '🌍 Concentration': [
         ('Sovereign / CET1', 'Sovereign Exposure / CET1', None),
-
         ('Home Bias Ratio', 'Home Sovereign / CET1', None),
-
     ],
-
-    'Balance Sheet Breakdown': [
-
-        ('Loans to Assets', 'Loans / Total Assets', None),
-
-        ('Securities to Assets', 'Securities / Total Assets', None),
-
-        ('Cash to Assets', 'Cash / Total Assets', None),
-
+    '📊 Balance Sheet Breakdown': [
+        ('Loans to Assets', 'Loans / Total Assets', True),
+        ('Securities to Assets', 'Securities / Total Assets', False),
+        ('Cash to Assets', 'Cash / Total Assets', True),
     ],
-
-    'Funding & Liquidity': [
-
-        ('LDR', 'Loan-to-Deposit Ratio', None),
-
+    '💧 Funding & Liquidity': [
+        ('LDR', 'Loan-to-Deposit Ratio', False),
         ('Customer Deposit Ratio', 'Customer Deposits / Total Liab', True),
-
         ('Wholesale Funding Ratio', 'Wholesale Funding / Total Liab', False),
-
-        ('Cumulative Deposit Beta', 'Cumulative Deposit Beta', False),
-
     ]
-
 }
 
 
