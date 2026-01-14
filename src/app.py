@@ -11,6 +11,7 @@ from eba_benchmarking.config import DB_NAME
 from eba_benchmarking.data import get_master_data, get_financial_data, get_profitability_kpis, get_liquidity_kpis
 
 # Import UI Tabs
+# Import UI Tabs
 from eba_benchmarking.ui.tabs.insights import render_insights_tab
 from eba_benchmarking.ui.tabs.solvency import render_solvency_tab
 from eba_benchmarking.ui.tabs.asset_quality import render_asset_quality_tab
@@ -24,7 +25,9 @@ from eba_benchmarking.ui.tabs.liquidity import render_liquidity_tab
 from eba_benchmarking.ui.tabs.market_data import render_market_data_tab
 from eba_benchmarking.ui.tabs.yields import render_yields_tab
 from eba_benchmarking.ui.tabs.country_bench import render_country_bench_tab
-from eba_benchmarking.ui.tabs.benchmarking_dashboard import render_benchmarking_dashboard_tab
+from eba_benchmarking.ui.tabs.benchmarking_dashboard import render_benchmarking_dashboard_tab, render_custom_explorer
+from eba_benchmarking.ui.tabs.market_risk import render_market_risk_tab
+from eba_benchmarking.ui.tabs.credit_risk import render_credit_risk_tab
 
 # --- CONFIGURATION ---
 st.set_page_config(page_title="EBA Benchmarking", layout="wide", page_icon="🏦")
@@ -143,8 +146,6 @@ with tabs[0]:
 
 # 1. DEEP-DIVE EXPLORER
 with tabs[1]:
-    # Import locally to avoid circular dependency issues if any
-    from eba_benchmarking.ui.tabs.benchmarking_dashboard import render_custom_explorer
     render_custom_explorer(base_lei, base_bank_name, base_country, base_region, base_sys, base_size)
 
 # 2. SOLVENCY TAB
@@ -166,10 +167,8 @@ with tabs[5]:
 
 # 6. MARKET RISK & 7. CREDIT RISK (Generic)
 with tabs[6]:
-    from eba_benchmarking.ui.tabs.market_risk import render_market_risk_tab
     render_market_risk_tab(selected_leis, base_bank_name)
 with tabs[7]:
-    from eba_benchmarking.ui.tabs.credit_risk import render_credit_risk_tab
     render_credit_risk_tab(selected_leis, base_bank_name)
 
 # 8. SOVEREIGN TAB
