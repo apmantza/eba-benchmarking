@@ -1,0 +1,430 @@
+# Pillar 3 Extraction Dictionary
+
+This document lists all the metrics detected and extracted from the Pillar 3 PDF reports.
+
+**Total Items:** 421
+| Template | Row ID | Label | EBA Item ID | Category |
+|---|---|---|---|---|
+| CC1 | 1 | Capital instruments and the related share premium accounts | 2520103 | Capital |
+| CC1 | 2 | Retained earnings | 2520104 | Capital |
+| CC1 | 3 | Accumulated other comprehensive income | 2520105 | Capital |
+| CC1 | 3a | Funds for general banking risk | -(Unmapped)- | Capital |
+| CC1 | 4 | Other reserves | 2520106 | Capital |
+| CC1 | 5 | Minority interests | 2520108 | Capital |
+| CC1 | 5a | Independently reviewed interim profits net of foreseeable charges or dividends | -(Unmapped)- | Capital |
+| CC1 | 6 | Common Equity Tier 1 (CET1) capital before regulatory adjustments | -(Unmapped)- | Capital |
+| CC1 | 7 | Additional value adjustments | 2520109 | Capital |
+| CC1 | 8 | Intangible assets | 2520110 | Capital |
+| CC1 | 9 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 10 | Deferred tax assets that rely on future profitability | 2520111 | Capital |
+| CC1 | 11 | Fair value reserves related to gains or losses on cash flow hedges of financial instruments that are not valued at fair value | -(Unmapped)- | Capital |
+| CC1 | 12 | Negative amounts resulting from the calculation of expected loss amounts | -(Unmapped)- | Capital |
+| CC1 | 13 | Any increase in equity that results from securitised assets (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 14 | Gains or losses on liabilities valued at fair value resulting from changes in own credit standing | -(Unmapped)- | Capital |
+| CC1 | 15 | Defined-benefit pension fund assets (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 16 | Direct, indirect and synthetic holdings by an institution of own CET1 instruments (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 17 | Direct, indirect and synthetic holdings of the CET 1 instruments of financial sector entities where those entities have reciprocal cross holdings with the institution designed to inflate artificially the own funds of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 18 | Direct, indirect and synthetic holdings by the institution of the CET1 instruments of financial sector entities where the institution does not have a significant investment in those entities (amount above 10% threshold and net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 19 | Direct, indirect and synthetic holdings by the institution of the CET1 instruments of financial sector entities where the institution has a significant investment in those entities (amount above 10% threshold and net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 20 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 20a | Exposure amount of the following items which qualify for a RW of 1250%, where the institution opts for the deduction alternative | -(Unmapped)- | Capital |
+| CC1 | 20b | of which: qualifying holdings outside the financial sector (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 20c | of which: securitisation positions (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 20d | of which: free deliveries (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 21 | Deferred tax assets arising from temporary differences (amount above 10% threshold, net of related tax liability where the conditions in Article 38 (3) CRR are met) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 22 | Amount exceeding the 17.65% threshold (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 23 | of which: direct, indirect and synthetic holdings by the institution of the CET1 instruments of financial sector entities where the institution has a significant investment in those entities | -(Unmapped)- | Capital |
+| CC1 | 24 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 25 | of which: deferred tax assets arising from temporary differences | -(Unmapped)- | Capital |
+| CC1 | 25a | Losses for the current financial year (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 25b | Foreseeable tax charges relating to CET1 items except where the institution suitably adjusts the amount of CET1 items insofar as such tax charges reduce the amount up to which those items may be used to cover risks or losses (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 26 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 27 | Qualifying AT1 deductions that exceed the AT1 items of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 27a | Other regulatory adjustments | -(Unmapped)- | Capital |
+| CC1 | 28 | Total regulatory adjustments to Common Equity Tier 1 (CET1) | -(Unmapped)- | Capital |
+| CC1 | 29 | Common Equity Tier 1 | 2520102 | Capital |
+| CC1 | 30 | Additional Tier 1 | 2520129 | Capital |
+| CC1 | 31 | of which: classified as equity under applicable accounting standards | -(Unmapped)- | Capital |
+| CC1 | 32 | of which: classified as liabilities under applicable accounting standards | -(Unmapped)- | Capital |
+| CC1 | 33 | Amount of qualifying items referred to in Article 484 (4) CRR and the related share premium accounts subject to phase out from AT1 | -(Unmapped)- | Capital |
+| CC1 | 33a | Amount of qualifying items referred to in Article 494a(1) CRR subject to phase out from AT1 | -(Unmapped)- | Capital |
+| CC1 | 33b | Amount of qualifying items referred to in Article 494b(1) CRR subject to phase out from AT1 | -(Unmapped)- | Capital |
+| CC1 | 34 | Qualifying Tier 1 capital included in consolidated AT1 capital (including minority interests not included in row 5) issued by subsidiaries and held by third parties | -(Unmapped)- | Capital |
+| CC1 | 35 | of which: instruments issued by subsidiaries subject to phase out | -(Unmapped)- | Capital |
+| CC1 | 36 | Additional Tier 1 (AT1) capital before regulatory adjustments | 2520128 | Capital |
+| CC1 | 37 | Direct, indirect and synthetic holdings by an institution of own AT1 instruments (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 38 | Direct, indirect and synthetic holdings of the AT1 instruments of financial sector entities where those entities have reciprocal cross holdings with the institution designed to inflate artificially the own funds of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 39 | Direct, indirect and synthetic holdings of the AT1 instruments of financial sector entities where the institution does not have a significant investment in those entities (amount above 10% threshold and net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 40 | Direct, indirect and synthetic holdings by the institution of the AT1 instruments of financial sector entities where the institution has a significant investment in those entities (net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 41 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 42 | Qualifying T2 deductions that exceed the T2 items of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 42a | Other regulatory adjustments to AT1 capital | -(Unmapped)- | Capital |
+| CC1 | 43 | Total regulatory adjustments to Additional Tier 1 (AT1) capital | -(Unmapped)- | Capital |
+| CC1 | 44 | Tier 1 capital | 2520133 | Capital |
+| CC1 | 45 | Tier 2 instruments | 2520135 | Capital |
+| CC1 | 46 | Capital instruments and the related share premium accounts | -(Unmapped)- | Capital |
+| CC1 | 47 | Amount of qualifying  items referred to in Article 484(5) CRR and the related share premium accounts subject to phase out from T2 as described in Article 486(4) CRR | -(Unmapped)- | Capital |
+| CC1 | 47a | Amount of qualifying  items referred to in Article 494a(2) CRR subject to phase out from T2 | -(Unmapped)- | Capital |
+| CC1 | 47b | Amount of qualifying  items referred to in Article 494b(2) CRR subject to phase out from T2 | -(Unmapped)- | Capital |
+| CC1 | 48 | Qualifying own funds instruments included in consolidated T2 capital (including minority interests and AT1 instruments not included in rows 5 or 34) issued by subsidiaries and held by third parties | -(Unmapped)- | Capital |
+| CC1 | 49 | of which: instruments issued by subsidiaries subject to phase out | -(Unmapped)- | Capital |
+| CC1 | 50 | Credit risk adjustments | -(Unmapped)- | Capital |
+| CC1 | 51 | Tier 2 (T2) capital before regulatory adjustments | -(Unmapped)- | Capital |
+| CC1 | 52 | Direct, indirect and synthetic holdings by an institution of own T2 instruments and subordinated loans (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 53 | Direct, indirect and synthetic holdings of the T2 instruments and subordinated loans of financial sector entities where those entities have reciprocal cross holdings with the institution designed to inflate artificially the own funds of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 54 | Direct, indirect and synthetic holdings of the T2 instruments and subordinated loans of financial sector entities where the institution does not have a significant investment in those entities (amount above 10% threshold and net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 54a | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 55 | Direct, indirect and synthetic holdings by the institution of the T2 instruments and subordinated loans of financial sector entities where the institution has a significant investment in those entities (net of eligible short positions) (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 56 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 56a | Qualifying eligible liabilities deductions that exceed the eligible liabilities items of the institution (negative amount) | -(Unmapped)- | Capital |
+| CC1 | 56b | Other regulatory adjustments to T2 capital | -(Unmapped)- | Capital |
+| CC1 | 57 | Total regulatory adjustments to Tier 2 (T2) capital | -(Unmapped)- | Capital |
+| CC1 | 58 | Total capital | 2520101 | Capital |
+| CC1 | 59 | Total risk exposure amount | 2520138 | Capital |
+| CC1 | 60 | Common Equity Tier 1 ratio | 2520140 | Capital |
+| CC1 | 61 | Tier 1 ratio | 2520141 | Capital |
+| CC1 | 62 | Total capital ratio | 2520142 | Capital |
+| CC1 | 63 | Total capital | -(Unmapped)- | Capital |
+| CC1 | 64 | Institution CET1 overall capital requirements | -(Unmapped)- | Capital |
+| CC1 | 65 | of which: capital conservation buffer requirement | -(Unmapped)- | Capital |
+| CC1 | 66 | of which: countercyclical capital buffer requirement | -(Unmapped)- | Capital |
+| CC1 | 67 | of which: systemic risk buffer requirement | -(Unmapped)- | Capital |
+| CC1 | 67a | of which: Global Systemically Important Institution (G-SII) or Other Systemically Important Institution (O-SII) buffer requirement | -(Unmapped)- | Capital |
+| CC1 | 67b | of which: additional own funds requirements to address the risks other than the risk of excessive leverage | -(Unmapped)- | Capital |
+| CC1 | 68 | Common Equity Tier 1 capital (as a percentage of risk exposure amount) available after meeting the minimum capital requirements | -(Unmapped)- | Capital |
+| CC1 | 69 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 70 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 71 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 72 | Direct and indirect holdings of own funds and  eligible liabilities of financial sector entities where the institution does not have a significant investment in those entities (amount below 10% threshold and net of eligible short positions) | -(Unmapped)- | Capital |
+| CC1 | 73 | Direct and indirect holdings by the institution of the CET1 instruments of financial sector entities where the institution has a significant investment in those entities (amount below 17.65% thresholds and net of eligible short positions) | -(Unmapped)- | Capital |
+| CC1 | 74 | Not applicable | -(Unmapped)- | Capital |
+| CC1 | 75 | Deferred tax assets arising from temporary differences (amount below 17.65% threshold, net of related tax liability where the conditions in Article 38 (3) CRR are met) | -(Unmapped)- | Capital |
+| CC1 | 76 | Credit risk adjustments included in T2 in respect of exposures subject to standardised approach (prior to the application of the cap) | -(Unmapped)- | Capital |
+| CC1 | 77 | Cap on inclusion of credit risk adjustments in T2 under standardised approach | -(Unmapped)- | Capital |
+| CC1 | 78 | Credit risk adjustments included in T2 in respect of exposures subject to internal ratings-based approach (prior to the application of the cap) | -(Unmapped)- | Capital |
+| CC1 | 79 | Cap for inclusion of credit risk adjustments in T2 under internal ratings-based approach | -(Unmapped)- | Capital |
+| CC1 | 80 | Current cap on CET1 instruments subject to phase out arrangements | -(Unmapped)- | Capital |
+| CC1 | 81 | Amount excluded from CET1 due to cap (excess over cap after redemptions and maturities) | -(Unmapped)- | Capital |
+| CC1 | 82 | Current cap on AT1 instruments subject to phase out arrangements | -(Unmapped)- | Capital |
+| CC1 | 83 | Amount excluded from AT1 due to cap (excess over cap after redemptions and maturities) | -(Unmapped)- | Capital |
+| CC1 | 84 | Current cap on T2 instruments subject to phase out arrangements | -(Unmapped)- | Capital |
+| CC1 | 85 | Amount excluded from T2 due to cap (excess over cap after redemptions and maturities) | -(Unmapped)- | Capital |
+| CC2 | 1 | Total Assets per FS | -(Unmapped)- | Capital |
+| CC2 | 2 | Total Liabilities per FS | 2520110 | Capital |
+| CC2 | 3 | Total Equity per FS | 2520111 | Capital |
+| CC2 | 4 | Changes in the fair value of hedged items in portfolio hedges of interest rate risk | -(Unmapped)- | Capital |
+| CC2 | 5 | Insurance contract liabilities | -(Unmapped)- | Capital |
+| CC2 | 6 | Investments at FVOCI | -(Unmapped)- | Capital |
+| CC2 | 7 | Investments at amortised cost | -(Unmapped)- | Capital |
+| CC2 | 8 | Loans and advances to customers | -(Unmapped)- | Capital |
+| CC2 | 9 | Life insurance business assets attributable to 
+policyholders | -(Unmapped)- | Capital |
+| CC2 | 10 | Prepayments, accrued income and other assets | -(Unmapped)- | Capital |
+| CC2 | 11 | Stock of property | -(Unmapped)- | Capital |
+| CC2 | 12 | Investment properties | -(Unmapped)- | Capital |
+| CC2 | 13 | Deferred tax assets | -(Unmapped)- | Capital |
+| CC2 | 14 | Property and equipment | -(Unmapped)- | Capital |
+| CC2 | 15 | Intangible assets | -(Unmapped)- | Capital |
+| CC2 | 16 | Investments in Group undertakings | -(Unmapped)- | Capital |
+| CC2 | 17 | Total assets | -(Unmapped)- | Capital |
+| CC2 | 18 | Total assets | -(Unmapped)- | Capital |
+| CCR1 | Total | Total | 2520703 | Forborne exposures |
+| CCR1 | 5 | Financial collateral simple method (SFTs) | -(Unmapped)- | Counterparty Credit Risk |
+| CCR1 | 6 | Financial collateral comprehensive method (SFTs) | -(Unmapped)- | Counterparty Credit Risk |
+| CCR1 | 7 | VaR for SFTs | -(Unmapped)- | Counterparty Credit Risk |
+| CQ7 | Total | Total | -(Unmapped)- | Asset Quality |
+| CR1 | 1 | Loans and advances | 2520603 | NPE |
+| CR1 | 2 | Debt securities | 2520602 | NPE |
+| CR1 | 3 | Off-balance sheet | 2520606 | NPE |
+| CR1 | 4 | Financial collateral comprehensive method (for SFTs) | -(Unmapped)- | Credit Risk |
+| CR1 | 005 | Cash balances at central banks and other demand deposits | -(Unmapped)- | Credit Risk |
+| CR1 | 5 | VaR for SFTs | -(Unmapped)- | Credit Risk |
+| CR1 | 6 | Total | -(Unmapped)- | Credit Risk |
+| CR1 | 010 | Loans and advances | -(Unmapped)- | Credit Risk |
+| CR1 | 020 | Central banks | -(Unmapped)- | Credit Risk |
+| CR1 | 030 | General governments | -(Unmapped)- | Credit Risk |
+| CR1 | 040 | Credit institutions | -(Unmapped)- | Credit Risk |
+| CR1 | 050 | Other financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 060 | Non-financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 070 | Of which SMEs | -(Unmapped)- | Credit Risk |
+| CR1 | 080 | Households | -(Unmapped)- | Credit Risk |
+| CR1 | 090 | Debt securities | -(Unmapped)- | Credit Risk |
+| CR1 | 100 | Central banks | -(Unmapped)- | Credit Risk |
+| CR1 | 110 | General governments | -(Unmapped)- | Credit Risk |
+| CR1 | 120 | Credit institutions | -(Unmapped)- | Credit Risk |
+| CR1 | 130 | Other financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 140 | Non-financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 150 | Off-balance-sheet exposures | -(Unmapped)- | Credit Risk |
+| CR1 | 160 | Central banks | -(Unmapped)- | Credit Risk |
+| CR1 | 170 | General governments | -(Unmapped)- | Credit Risk |
+| CR1 | 180 | Credit institutions | -(Unmapped)- | Credit Risk |
+| CR1 | 190 | Other financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 200 | Non-financial corporations | -(Unmapped)- | Credit Risk |
+| CR1 | 210 | Households | -(Unmapped)- | Credit Risk |
+| CR1 | 220 | Total | -(Unmapped)- | Credit Risk |
+| CR3 | 2 | Exposures secured | 2520622 | NPE |
+| CR4 | Total | Total | 2520521 | Credit Risk |
+| CR4 | 1 | Central governments or central banks | -(Unmapped)- | Credit Risk |
+| CR4 | 2 | Regional governments or local authorities | -(Unmapped)- | Credit Risk |
+| CR4 | 3 | Public sector entities | -(Unmapped)- | Credit Risk |
+| CR4 | 4 | Multilateral development banks | -(Unmapped)- | Credit Risk |
+| CR4 | 5 | International organisations | -(Unmapped)- | Credit Risk |
+| CR4 | 6 | Institutions | -(Unmapped)- | Credit Risk |
+| CR4 | 7 | Corporates | -(Unmapped)- | Credit Risk |
+| CR4 | 9 | Retail | -(Unmapped)- | Credit Risk |
+| CR4 | 11 | Secured by mortgages on immovable property | -(Unmapped)- | Credit Risk |
+| CR4 | 13 | Exposures in default | -(Unmapped)- | Credit Risk |
+| CR4 | 15 | Covered bonds | -(Unmapped)- | Credit Risk |
+| CR4 | 16 | Claims on institutions and corporates with short-term rating | -(Unmapped)- | Credit Risk |
+| CR4 | 17 | Collective investment undertakings | -(Unmapped)- | Credit Risk |
+| CR5 | Total | Total | -(Unmapped)- | Credit Risk |
+| IRRBB1 | 1 | Parallel up | -(Unmapped)- | Interest Rate Risk |
+| IRRBB1 | 2 | Parallel down | -(Unmapped)- | Interest Rate Risk |
+| IRRBB1 | 3 | Steepener | -(Unmapped)- | Interest Rate Risk |
+| IRRBB1 | 4 | Flattener | -(Unmapped)- | Interest Rate Risk |
+| IRRBB1 | 5 | Short rates up | -(Unmapped)- | Interest Rate Risk |
+| IRRBB1 | 6 | Short rates down | -(Unmapped)- | Interest Rate Risk |
+| KM1 | 1 | Common Equity Tier 1 | 2520102 | Capital |
+| KM1 | 2 | Tier 1 capital | 2520133 | Capital |
+| KM1 | 3 | Total capital | 2520101 | Capital |
+| KM1 | 4 | Total risk exposure amount | 2520138 | Capital |
+| KM1 | 4a | Total risk exposure pre-floor | 2520154 | Capital |
+| KM1 | 5 | Common Equity Tier 1 ratio | 2520146 | Capital |
+| KM1 | 5b | Common Equity Tier 1 ratio | 2520146 | Capital |
+| KM1 | 6 | Tier 1 ratio | 2520147 | Capital |
+| KM1 | 6b | Tier 1 ratio | 2520147 | Capital |
+| KM1 | 7 | Total capital ratio | 2520148 | Capital |
+| KM1 | 7b | Total capital ratio | 2520148 | Capital |
+| KM1 | 7d | Additional own funds requirements to address risks other than the risk of excessive leverage (%) | -(Unmapped)- | Capital |
+| KM1 | 7e | of which: to be made up of CET1 capital (percentage points) | -(Unmapped)- | Capital |
+| KM1 | 7f | of which: to be made up of Tier 1 capital (percentage points) | -(Unmapped)- | Capital |
+| KM1 | 7g | Total SREP own funds requirements (%) | -(Unmapped)- | Capital |
+| KM1 | 8 | Capital conservation buffer | -(Unmapped)- | Capital |
+| KM1 | 8a | Conservation buffer due to macro-prudential or systemic risk identified at the level of a Member State (%) | -(Unmapped)- | Capital |
+| KM1 | 9 | Countercyclical capital buffer | -(Unmapped)- | Capital |
+| KM1 | 9a | Systemic risk buffer (%) | -(Unmapped)- | Capital |
+| KM1 | 10 | Global Systemically Important Institution buffer (%) | -(Unmapped)- | Capital |
+| KM1 | 10a | Other Systemically Important Institution buffer (%) | -(Unmapped)- | Capital |
+| KM1 | 11 | Combined buffer requirement | -(Unmapped)- | Capital |
+| KM1 | 11a | Overall capital requirements (%) | -(Unmapped)- | Capital |
+| KM1 | 12 | CET1 available after meeting the total SREP own funds requirements (%) | -(Unmapped)- | Capital |
+| KM1 | 13 | Leverage ratio total exposure measure | 2520903 | Leverage |
+| KM1 | 14 | Leverage ratio | 2520905 | Leverage |
+| KM1 | 14a | Additional own funds requirements to address the risk of excessive leverage (%) | -(Unmapped)- | Capital |
+| KM1 | 14b | of which: to be made up of CET1 capital (percentage points) | -(Unmapped)- | Capital |
+| KM1 | 14c | Total SREP leverage ratio requirements (%) | -(Unmapped)- | Capital |
+| KM1 | 14d | Leverage ratio buffer requirement (%) | -(Unmapped)- | Capital |
+| KM1 | 14e | Overall leverage ratio requirement (%) | -(Unmapped)- | Capital |
+| KM1 | 15 | Total HQLA | -(Unmapped)- | Capital |
+| KM1 | 16 | Total net cash outflows (adjusted value) | -(Unmapped)- | Capital |
+| KM1 | 16a | Cash outflows - Total weighted value | -(Unmapped)- | Capital |
+| KM1 | 16b | Cash inflows - Total weighted value | -(Unmapped)- | Capital |
+| KM1 | 17 | Total net cash outflows | -(Unmapped)- | Capital |
+| KM1 | 18 | LCR liquidity coverage ratio | -(Unmapped)- | Capital |
+| KM1 | 19 | Total required stable funding | -(Unmapped)- | Capital |
+| KM1 | 20 | NSFR ratio | -(Unmapped)- | Capital |
+| KM2 | EU-1a | Own Funds | 2520101 | Capital |
+| KM2 | 1 | Own funds and eligible liabilities | -(Unmapped)- | Capital |
+| KM2 | 1a | Of which own funds and subordinated liabilities (€ million) | -(Unmapped)- | Capital |
+| KM2 | 2 | Total RWA | 2520138 | Capital |
+| KM2 | 3 | MREL ratio (% of RWA) | -(Unmapped)- | Capital |
+| KM2 | 3a | Of which own funds and subordinated liabilities | -(Unmapped)- | Capital |
+| KM2 | 4 | Total exposure measure | 2520903 | Leverage |
+| KM2 | 5 | MREL ratio (% of TEM) | -(Unmapped)- | Capital |
+| KM2 | 5a | Of which own funds or subordinated liabilities | -(Unmapped)- | Capital |
+| KM2 | 6a | Does the subordination exemption in Article 72b(4) of Regulation (EU) No 575/2013 apply? (5% exemption) | -(Unmapped)- | Capital |
+| KM2 | 6b | Aggregate amount of permitted non-subordinated eligible liabilities instruments if the subordination discretion in accordance with Article 72b(3) of Regulation (EU) No 575/2013 is applied (max 3.5% exemption) | -(Unmapped)- | Capital |
+| KM2 | 6c | If a capped subordination exemption applies in accordance with Article 72b (3) of Regulation (EU) No 575/2013, the amount of funding issued that ranks pari passu with excluded liabilities and that is recognised under row 1, divided by funding issued that ranks pari passu with excluded liabilities and that would be recognised under row 1 if no cap was applied (%) | -(Unmapped)- | Capital |
+| KM2 | 7 | MREL expressed as a percentage of the TREA | -(Unmapped)- | Capital |
+| KM2 | 9 | MREL expressed as a percentage of the TEM | -(Unmapped)- | Capital |
+| LIQ1 | EU-19a | TOTAL CASH OUTFLOWS | 2520922 | Liquidity |
+| LIQ1 | 1 | As of June 2025 the HQLA buffer stood at EUR 16.3 | 2520911 | Liquidity |
+| LIQ1 | 1b | Number of data points used in the calculation of averages | -(Unmapped)- | Liquidity |
+| LIQ1 | 2 | Retail deposits | -(Unmapped)- | Liquidity |
+| LIQ1 | 3 | Stable deposits | -(Unmapped)- | Liquidity |
+| LIQ1 | 4 | Less stable deposits | -(Unmapped)- | Liquidity |
+| LIQ1 | 5 | Unsecured wholesale funding | -(Unmapped)- | Liquidity |
+| LIQ1 | 6 | Operational deposits (all counterparties) and deposits in networks of cooperative banks | -(Unmapped)- | Liquidity |
+| LIQ1 | 7 | Non-operational deposits (all counterparties) | -(Unmapped)- | Liquidity |
+| LIQ1 | 8 | Unsecured debt | -(Unmapped)- | Liquidity |
+| LIQ1 | 9 | Secured wholesale funding | -(Unmapped)- | Liquidity |
+| LIQ1 | 10 | Additional requirements | -(Unmapped)- | Liquidity |
+| LIQ1 | 11 | Outflows related to derivative exposures and other collateral requirements | -(Unmapped)- | Liquidity |
+| LIQ1 | 12 | Outflows related to loss of funding on debt products | -(Unmapped)- | Liquidity |
+| LIQ1 | 13 | Credit and liquidity facilities | -(Unmapped)- | Liquidity |
+| LIQ1 | 14 | Other contractual funding obligations | -(Unmapped)- | Liquidity |
+| LIQ1 | 15 | Other contingent funding obligations | -(Unmapped)- | Liquidity |
+| LIQ1 | 16 | Total Cash Outflows | -(Unmapped)- | Liquidity |
+| LIQ1 | 17 | Secured lending (e.g. reverse repos) | -(Unmapped)- | Liquidity |
+| LIQ1 | 18 | Inflows from fully performing exposures | -(Unmapped)- | Liquidity |
+| LIQ1 | 19 | Total Cash Inflows | -(Unmapped)- | Liquidity |
+| LIQ1 | 19a | (Difference between total weighted inflows and total weighted outflows arising from transactions in third countries where there are transfer restrictions or which are denominated in non-convertible currencies) | -(Unmapped)- | Liquidity |
+| LIQ1 | 19b | (Excess inflows from a related specialised credit institution) | -(Unmapped)- | Liquidity |
+| LIQ1 | 20 | TOTAL CASH INFLOWS | -(Unmapped)- | Liquidity |
+| LIQ1 | 20a | Fully exempt inflows | -(Unmapped)- | Liquidity |
+| LIQ1 | 20b | Inflows Subject to 90% Cap | -(Unmapped)- | Liquidity |
+| LIQ1 | 20c | Inflows Subject to 75% Cap | -(Unmapped)- | Liquidity |
+| LIQ1 | 21 | LCR HQLA | 2520401 | Market Risk |
+| LIQ1 | 22 | LIQUIDITY BUFFER | 2520402 | Market Risk |
+| LIQ1 | 23 | 10.8 Liquidity Coverage Ratio (LCR) | 2520403 | Market Risk |
+| LIQ2 | 1 | Capital items | -(Unmapped)- | Liquidity |
+| LIQ2 | 2 | Own funds | -(Unmapped)- | Liquidity |
+| LIQ2 | 3 | Other capital instruments | -(Unmapped)- | Liquidity |
+| LIQ2 | 4 | Retail deposits | -(Unmapped)- | Liquidity |
+| LIQ2 | 5 | Stable deposits | -(Unmapped)- | Liquidity |
+| LIQ2 | 6 | Less stable deposits | -(Unmapped)- | Liquidity |
+| LIQ2 | 7 | Wholesale funding: | -(Unmapped)- | Liquidity |
+| LIQ2 | 8 | Operational deposits | -(Unmapped)- | Liquidity |
+| LIQ2 | 9 | Other wholesale funding | -(Unmapped)- | Liquidity |
+| LIQ2 | 10 | Interdependent liabilities | -(Unmapped)- | Liquidity |
+| LIQ2 | 11 | Other liabilities: | -(Unmapped)- | Liquidity |
+| LIQ2 | 12 | Total ASF | -(Unmapped)- | Liquidity |
+| LIQ2 | 13 | Total HQLA for NSFR | -(Unmapped)- | Liquidity |
+| LIQ2 | 14 | Total available stable funding (ASF) | -(Unmapped)- | Liquidity |
+| LIQ2 | 15 | Total high-quality liquid assets (HQLA) | -(Unmapped)- | Liquidity |
+| LIQ2 | 16 | Deposits held at other financial institutions for operational purposes | -(Unmapped)- | Liquidity |
+| LIQ2 | 17 | Performing loans and securities: | -(Unmapped)- | Liquidity |
+| LIQ2 | 18 | Performing securities financing transactions with financial customers collateralised by Level 1 HQLA subject to 0% haircut | -(Unmapped)- | Liquidity |
+| LIQ2 | 19 | Performing securities financing transactions with financial customer collateralised by other assets and loans and advances to financial institutions | -(Unmapped)- | Liquidity |
+| LIQ2 | 20 | Performing loans to non- financial corporate clients, loans to retail and small business customers, and loans to sovereigns, and PSEs, of which: | -(Unmapped)- | Liquidity |
+| LIQ2 | 21 | With a risk weight of less than or equal to 35% under the Basel II Standardised Approach for credit risk | -(Unmapped)- | Liquidity |
+| LIQ2 | 22 | Performing residential mortgages, of which: | -(Unmapped)- | Liquidity |
+| LIQ2 | 23 | With a risk weight of less than or equal to 35% under the Basel II Standardised Approach for credit risk | -(Unmapped)- | Liquidity |
+| LIQ2 | 24 | Other loans and securities that are not in default and do not qualify as HQLA, including exchange-traded equities and trade finance on-balance sheet products | -(Unmapped)- | Liquidity |
+| LIQ2 | 25 | Interdependent assets | -(Unmapped)- | Liquidity |
+| LIQ2 | 26 | Total RSF | -(Unmapped)- | Liquidity |
+| LIQ2 | 27 | NSFR Ratio | 2520404 | Market Risk |
+| LIQ2 | 28 | Assets posted as initial margin for derivative contracts and contributions to default funds of CCPs | -(Unmapped)- | Liquidity |
+| LIQ2 | 29 | NSFR derivative assets | -(Unmapped)- | Liquidity |
+| LIQ2 | 30 | NSFR derivative liabilities before deduction of variation margin posted | -(Unmapped)- | Liquidity |
+| LIQ2 | 31 | All other assets not included in the above categories | -(Unmapped)- | Liquidity |
+| LIQ2 | 32 | Off-balance sheet items | -(Unmapped)- | Liquidity |
+| LIQ2 | 33 | Total RSF | -(Unmapped)- | Liquidity |
+| LIQ2 | 34 | Net Stable Funding Ratio (%) | -(Unmapped)- | Liquidity |
+| LR1 | 1 | Total assets per FS | -(Unmapped)- | Leverage |
+| LR1 | 2 | Adjustment for entities which are consolidated for accounting purposes but are outside the scope of prudential consolidation | -(Unmapped)- | Leverage |
+| LR1 | 3 | (Adjustment for securitised exposures that meet the operational requirements for the recognition of risk transference) | -(Unmapped)- | Leverage |
+| LR1 | 4 | (Adjustment for temporary exemption of exposures to central banks (if applicable)) | -(Unmapped)- | Leverage |
+| LR1 | 5 | (Adjustment for fiduciary assets recognised on the balance sheet pursuant to the applicable accounting framework but excluded from the leverage ratio total exposure measure in accordance with point (i) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR1 | 6 | Adjustment for regular-way purchases and sales of financial assets subject to trade date accounting | -(Unmapped)- | Leverage |
+| LR1 | 7 | Adjustment for eligible cash pooling transactions | -(Unmapped)- | Leverage |
+| LR1 | 8 | Adjustments for derivative financial instruments | -(Unmapped)- | Leverage |
+| LR1 | 9 | Adjustment for securities financing transactions (SFTs) | -(Unmapped)- | Leverage |
+| LR1 | 10 | Adjustment for off-balance sheet items (i.e. conversion to credit equivalent amounts of off-balance sheet exposures) | -(Unmapped)- | Leverage |
+| LR1 | 11 | (Adjustment for prudent valuation adjustments and specific and general provisions which have reduced Tier 1 capital) | -(Unmapped)- | Leverage |
+| LR1 | 11a | (Adjustment for exposures excluded from the total exposure measure in accordance with point (c) and point (ca) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR1 | 11b | (Adjustment for exposures excluded from the total exposure measure in accordance with point (j) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR1 | 12 | Other adjustments | -(Unmapped)- | Leverage |
+| LR1 | 13 | Leverage Ratio Exposure | 2520903 | Leverage |
+| LR2 | 1 | On-balance sheet items (excluding derivatives, SFTs, but including collateral) | -(Unmapped)- | Leverage |
+| LR2 | 2 | Gross-up for derivatives collateral provided where deducted from the balance sheet assets pursuant to the applicable accounting framework | -(Unmapped)- | Leverage |
+| LR2 | 3 | (Deductions of receivables assets for cash variation margin provided in derivatives transactions) | -(Unmapped)- | Leverage |
+| LR2 | 4 | (Adjustment for securities received under securities financing transactions that are recognised as an asset) | -(Unmapped)- | Leverage |
+| LR2 | 5 | (General credit risk adjustments to on-balance sheet items) | -(Unmapped)- | Leverage |
+| LR2 | 6 | (Asset amounts deducted in determining Tier 1 capital) | -(Unmapped)- | Leverage |
+| LR2 | 7 | Total on-balance sheet exposures (excluding derivatives and SFTs) | -(Unmapped)- | Leverage |
+| LR2 | 8 | Replacement cost associated with SA-CCR derivatives transactions (i.e. net of eligible cash variation margin) | -(Unmapped)- | Leverage |
+| LR2 | 8a | Derogation for derivatives: replacement costs contribution under the simplified standardised approach | -(Unmapped)- | Leverage |
+| LR2 | 9 | Add-on amounts for potential future exposure associated with  SA-CCR derivatives transactions | -(Unmapped)- | Leverage |
+| LR2 | 9a | Derogation for derivatives: Potential future exposure contribution under the simplified standardised approach | -(Unmapped)- | Leverage |
+| LR2 | 9b | Exposure determined under Original Exposure Method | -(Unmapped)- | Leverage |
+| LR2 | 10 | (Exempted CCP leg of client-cleared trade exposures) (SA-CCR) | -(Unmapped)- | Leverage |
+| LR2 | 10a | (Exempted CCP leg of client-cleared trade exposures) (simplified standardised approach) | -(Unmapped)- | Leverage |
+| LR2 | 10b | (Exempted CCP leg of client-cleared trade exposures) (original Exposure Method) | -(Unmapped)- | Leverage |
+| LR2 | 11 | Adjusted effective notional amount of written credit derivatives | -(Unmapped)- | Leverage |
+| LR2 | 12 | (Adjusted effective notional offsets and add-on deductions for written credit derivatives) | -(Unmapped)- | Leverage |
+| LR2 | 13 | Total On-Balance Sheet Exposures | -(Unmapped)- | Leverage |
+| LR2 | 14 | Gross SFT assets (with no recognition of netting), after adjustment for sales accounting transactions | -(Unmapped)- | Leverage |
+| LR2 | 15 | (Netted amounts of cash payables and cash receivables of gross SFT assets) | -(Unmapped)- | Leverage |
+| LR2 | 16 | Counterparty credit risk exposure for SFT assets | -(Unmapped)- | Leverage |
+| LR2 | 16a | Derogation for SFTs: Counterparty credit risk exposure in accordance with Articles 429e(5) and 222 CRR | -(Unmapped)- | Leverage |
+| LR2 | 17 | Agent transaction exposures | -(Unmapped)- | Leverage |
+| LR2 | 17a | (Exempted CCP leg of client-cleared SFT exposure) | -(Unmapped)- | Leverage |
+| LR2 | 18 | Total securities financing transaction exposures | -(Unmapped)- | Leverage |
+| LR2 | 19 | Off-balance sheet exposures at gross notional amount | -(Unmapped)- | Leverage |
+| LR2 | 20 | Leverage Ratio | 2520905 | Leverage |
+| LR2 | 21 | Leverage Ratio excl CB Deposits | -(Unmapped)- | Leverage |
+| LR2 | 22 | Off-balance sheet exposures | -(Unmapped)- | Leverage |
+| LR2 | 22a | (Exposures excluded from the total exposure measure in accordance with point (c) and point (ca) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR2 | 22b | (Exposures exempted in accordance with point (j) of Article 429a (1) CRR (on and off balance sheet)) | -(Unmapped)- | Leverage |
+| LR2 | 22c | (Excluded exposures of public development banks (or units) - Public sector investments) | -(Unmapped)- | Leverage |
+| LR2 | 22d | (Excluded exposures of public development banks (or units) - Promotional loans) | -(Unmapped)- | Leverage |
+| LR2 | 22e | (Excluded passing-through promotional loan exposures by non-public development banks (or units)) | -(Unmapped)- | Leverage |
+| LR2 | 22f | (Excluded guaranteed parts of exposures arising from export credits ) | -(Unmapped)- | Leverage |
+| LR2 | 22g | (Excluded excess collateral deposited at triparty agents ) | -(Unmapped)- | Leverage |
+| LR2 | 22h | (Excluded CSD related services of CSD/institutions in accordance with point (o) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR2 | 22i | (Excluded CSD related services of designated institutions in accordance with point (p) of Article 429a(1) CRR) | -(Unmapped)- | Leverage |
+| LR2 | 22j | (Reduction of the exposure value of pre-financing or intermediate loans ) | -(Unmapped)- | Leverage |
+| LR2 | 22k | (Excluded exposures to shareholders according to Article 429a (1), point (da) CRR)1 | -(Unmapped)- | Leverage |
+| LR2 | 22l | (Exposures deducted in accordance with point (q) of Article 429a(1) CRR)1 | -(Unmapped)- | Leverage |
+| LR2 | 22m | (Total exempted exposures) | -(Unmapped)- | Leverage |
+| LR2 | 23 | Tier 1 capital | 2520133 | Capital |
+| LR2 | 24 | Total exposure measure | 2520903 | Leverage |
+| LR2 | 25 | Leverage ratio | -(Unmapped)- | Leverage |
+| LR2 | 25a | Leverage ratio (excluding the impact of any applicable temporary exemption of
+central bank reserves) | -(Unmapped)- | Leverage |
+| LR2 | 26 | Regulatory minimum leverage ratio requirement (%) | -(Unmapped)- | Leverage |
+| LR2 | 26a | Additional own funds requirements to address the risk of excessive leverage (%) | -(Unmapped)- | Leverage |
+| LR2 | 26b | of which: to be made up of CET1 capital (percentage points) | -(Unmapped)- | Leverage |
+| LR2 | 27 | Leverage ratio buffer requirement (%) | -(Unmapped)- | Leverage |
+| LR2 | 27a | Overall leverage ratio requirement (%) | -(Unmapped)- | Leverage |
+| LR3 | 1 | Total assets per FS | -(Unmapped)- | Leverage |
+| LR3 | 2 | Trading book exposures | -(Unmapped)- | Leverage |
+| LR3 | 3 | Banking book exposures, of which: | -(Unmapped)- | Leverage |
+| LR3 | 4 | Covered bonds | -(Unmapped)- | Leverage |
+| LR3 | 5 | Exposures treated as sovereigns | -(Unmapped)- | Leverage |
+| LR3 | 6 | Exposures to regional governments, MDB, international organisations and PSE not treated as sovereigns | -(Unmapped)- | Leverage |
+| LR3 | 7 | Institutions | -(Unmapped)- | Leverage |
+| LR3 | 8 | Secured by mortgages of immovable properties | -(Unmapped)- | Leverage |
+| LR3 | 9 | Retail exposures | -(Unmapped)- | Leverage |
+| LR3 | 10 | Corporates | -(Unmapped)- | Leverage |
+| LR3 | 11 | Exposures in default | -(Unmapped)- | Leverage |
+| LR3 | 12 | Other exposures (eg equity, securitisations, and other non-credit obligation assets) | -(Unmapped)- | Leverage |
+| LR3 | 13 | Leverage Ratio Exposure | 2520903 | Leverage |
+| MR2 | 2 | Movement in risk levels | -(Unmapped)- | Market Risk |
+| MR2 | 4 | Methodology and policy | -(Unmapped)- | Market Risk |
+| MR2 | 5 | Acquisitions and disposals | -(Unmapped)- | Market Risk |
+| MR2 | 6 | Foreign exchange movements | -(Unmapped)- | Market Risk |
+| MR2 | 7 | Other | -(Unmapped)- | Market Risk |
+| OV1 | 1 | 2Counterparty credit risk - 466 466 466 466 | 2520201 | RWA |
+| OV1 | 2 | Of which SA | 2520202 | RWA |
+| OV1 | 3 | Of which FIRB | 2520203 | RWA |
+| OV1 | 4 | Of which Slotting | 2520204 | RWA |
+| OV1 | 4a | Of which: equities under the simple risk weighted approach | -(Unmapped)- | RWA |
+| OV1 | 5 | Of which Equities IRB | 2520205 | RWA |
+| OV1 | 6 | Counterparty Credit Risk | 2520206 | RWA |
+| OV1 | 7 | CCR SA-CCR | -(Unmapped)- | RWA |
+| OV1 | 8 | Of which internal model method (IMM) | -(Unmapped)- | RWA |
+| OV1 | 8a | Of which exposures to a CCP | -(Unmapped)- | RWA |
+| OV1 | 8b | Of which credit valuation adjustment - CVA | -(Unmapped)- | RWA |
+| OV1 | 9 | Of which other CCR | -(Unmapped)- | RWA |
+| OV1 | 10 | CVA Risk | 2520207 | RWA |
+| OV1 | 10a | Of which the standardised approach (SA)2 | -(Unmapped)- | RWA |
+| OV1 | 10b | Of which the basic approach (F-BA and R-BA)2 | -(Unmapped)- | RWA |
+| OV1 | 10c | Of which the simplified approach2 | -(Unmapped)- | RWA |
+| OV1 | 11 | Not applicable | -(Unmapped)- | RWA |
+| OV1 | 12 | Not applicable | -(Unmapped)- | RWA |
+| OV1 | 13 | Not applicable | -(Unmapped)- | RWA |
+| OV1 | 14 | Not applicable | -(Unmapped)- | RWA |
+| OV1 | 15 | Settlement Risk | 2520208 | RWA |
+| OV1 | 16 | Securitisation Banking Book | 2520209 | RWA |
+| OV1 | 17 | Of which SEC-IRBA approach | -(Unmapped)- | RWA |
+| OV1 | 18 | Of which SEC-ERBA (including IAA) | -(Unmapped)- | RWA |
+| OV1 | 19 | Of which SEC-SA approach | -(Unmapped)- | RWA |
+| OV1 | 19a | Of which 1250% | -(Unmapped)- | RWA |
+| OV1 | 20 | 5Market risk 7 30 132 861 1,609 1,609 | 2520210 | RWA |
+| OV1 | 21 | Market Risk SA | 2520211 | RWA |
+| OV1 | 21a | Of which the Simplified standardised approach (S-SA)2 | -(Unmapped)- | RWA |
+| OV1 | 22 | Market Risk IMA | 2520212 | RWA |
+| OV1 | 22a | Large exposures | -(Unmapped)- | RWA |
+| OV1 | 23 | Operational Risk | 2520215 | RWA |
+| OV1 | 23a | Of which basic indicator approach | -(Unmapped)- | RWA |
+| OV1 | 23b | Of which standardised approach | -(Unmapped)- | RWA |
+| OV1 | 23c | Of which advanced measurement approach | -(Unmapped)- | RWA |
+| OV1 | 24 | Operational Risk | 2520215 | RWA |
+| OV1 | 24a | Exposures to crypto-assets2 | -(Unmapped)- | RWA |
+| OV1 | 25 | Operational Risk SA | 2520217 | RWA |
+| OV1 | 26 | Output floor applied (%)2 | -(Unmapped)- | RWA |
+| OV1 | 27 | Floor adjustment (before application of transitional cap)2 | -(Unmapped)- | RWA |
+| OV1 | 28 | Floor adjustment (after application of transitional cap)2 | -(Unmapped)- | RWA |
+| OV1 | 29 | 11 Total liabilities 63.886 62.778 | 2520220 | RWA |

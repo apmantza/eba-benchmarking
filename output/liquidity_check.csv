@@ -1,0 +1,37 @@
+bank_name,period,row_id,amount,row_label
+Alpha Bank,2025-06-30,17,1.93,Liquidity coverage ratio (%)
+Alpha Bank,2025-06-30,18,53200.0,Total available stable funding
+Alpha Bank,2025-06-30,19,43265.0,Total required stable funding
+Alpha Bank,2025-06-30,20,1.23,NSFR ratio (%)
+Alpha Bank,2025-09-30,17,1.9340000000000002,Liquidity coverage ratio (%)
+Alpha Bank,2025-09-30,18,54575.0,Total available stable funding
+Alpha Bank,2025-09-30,19,43616.0,Total required stable funding
+Alpha Bank,2025-09-30,20,1.251,NSFR ratio (%)
+Bank of Cyprus,2025-06-30,17,3.1171175758197482,Liquidity coverage ratio (%)
+Bank of Cyprus,2025-06-30,18,19737.081272299998,Total available stable funding
+Bank of Cyprus,2025-06-30,19,11659.875017363871,Total required stable funding
+Bank of Cyprus,2025-06-30,20,1.692735234546474,NSFR ratio (%)
+Eurobank,2025-06-30,17,1.944,Liquidity coverage ratio (%)
+Eurobank,2025-06-30,18,79366.0,Total available stable funding
+Eurobank,2025-06-30,19,55301.0,Total required stable funding
+Eurobank,2025-06-30,20,1.435,NSFR ratio (%)
+Eurobank,2025-09-30,17,1.804,Liquidity coverage ratio (%)
+Eurobank,2025-09-30,18,80021.0,Total available stable funding
+Eurobank,2025-09-30,19,56067.0,Total required stable funding
+Eurobank,2025-09-30,20,1.4269999999999998,NSFR ratio (%)
+NBG,2025-06-30,17,2.6209,Liquidity coverage ratio (%)
+NBG,2025-06-30,18,61905.0,Total available stable funding
+NBG,2025-06-30,19,41794.0,Total required stable funding
+NBG,2025-06-30,20,1.4812,NSFR ratio (%)
+NBG,2025-09-30,17,2.6044,Liquidity coverage ratio (%)
+NBG,2025-09-30,18,62249.0,Total available stable funding
+NBG,2025-09-30,19,42283.0,Total required stable funding
+NBG,2025-09-30,20,1.4722,NSFR ratio (%)
+Piraeus,2025-06-30,17,2.2026,Liquidity coverage ratio (%)
+Piraeus,2025-06-30,18,66035.35800000001,Total available stable funding
+Piraeus,2025-06-30,19,50900.519,Total required stable funding
+Piraeus,2025-06-30,20,1.2973,NSFR ratio (%)
+Piraeus,2025-09-30,17,2.1412666666666667,Liquidity coverage ratio (%)
+Piraeus,2025-09-30,18,67158.58776000001,Total available stable funding
+Piraeus,2025-09-30,19,51827.54217,Total required stable funding
+Piraeus,2025-09-30,20,1.295808848887962,NSFR ratio (%)

@@ -1,0 +1,40 @@
+﻿,row_id,Row Label,dimension_name,category,5299008V0A0A0A0A0A0,549300B37Y9Z6Y5Z9Z9Z,Alpha Bank,Bank of Cyprus,Eurobank,M9S06G2A6O0A0A0A0A0,National Bank of Greece,Piraeus Bank
+0,1,1 - Common Equity Tier 1,Default,Capital,4921000000,7207000000,7447000000,2124497907,7932,,7207000000,5124955764
+20,2,2 - Tier 1 capital,Default,Capital,5621000000,7207000000,7447000000,2344497907,8427,,7207000000,6124955764
+22,3,3 - Total capital,Default,Capital,6638000000,8251000000,6638000000,2660942907,10132,,8251000000,7297772304
+23,4,4 - Total risk exposure amount,Default,Capital,30604000000,38074000000,30604000000,10300363131,51720,,,25000
+25,5,5 - Common Equity Tier 1 ratio,Default,Capital,0.16079999999999997,0.1893,7447,0.20625466112025756,0.153,0.1419,0.1893,0.1419
+27,6,6 - Tier 1 ratio,Default,Capital,0.1837,0.1893,0.1837,0.22761313141902667,0.163,0.1696,0.1893,0.1696
+29,7,7 - Total capital ratio,Default,Capital,0.2169,0.2167,0.2169,0.25833486384490845,0.196,0.2021,0.2167,0.2021
+35,8,8 - Capital conservation buffer,Default,Capital,0.025,0.025,0.025,0.024999999973301913,0.025,0.025,0.025,0.025
+37,9,9 - Countercyclical capital buffer,Default,Capital,0.0021,0.0006,0.0021,0.009022460161652333,0.0055000000000000005,,0.0006,0.0013908255763891452
+1,10,10 - Global Systemically Important Institution buffer (%),Default,Capital,0,-0.1,,0,0,,,0
+3,11,11 - Combined buffer requirement,Default,Capital,0.0371,0.0356,0.0371,0.0533974601676594,0.043,,0.0356,0.03639082557868519
+5,12,12 - CET1 available after meeting the total SREP own funds requirements (%),Default,Capital,,0.10869999999999999,,0.14578591112779674,0.0815,,,0.08058010545890427
+6,13,13 - Leverage ratio total exposure measure,Default,Leverage,74581000000,80140000000,74581000000,26832000000,107100,,,3000
+7,14,14 - Leverage ratio,Default,Leverage,,0.08990000000000001,0.03,0.0874,0.079,,0.08990000000000001,0.25
+13,15,15 - Total HQLA,Default,Capital,,21401000000,,11740093935.724997,,,,20269779110.833332
+14,16,16 - Total net cash outflows (adjusted value),Default,Capital,,8173000000,,3770191027.462701,,,,9220090528.525
+17,17,17 - Total net cash outflows,Default,Capital,,0.026208999999999996,8379000000,0.031171175758197483,,,8173000000,0.022025833333333335
+18,18,18 - LCR liquidity coverage ratio,Default,Capital,,61905000000,,19737081272.3,,,,66035357960
+19,19,19 - Total required stable funding,Default,Capital,,41794000000,,11659875017.36387,,,,50900519230
+21,20,20 - NSFR ratio,Default,Capital,,0.014812,1.23,0.01692735234546474,,,1.4812,0.012973415391228418
+9,14b,14b - of which: to be made up of CET1 capital (percentage points),Default,Capital,,,,0,,,,0
+8,14a,14a - Additional own funds requirements to address the risk of excessive leverage (%),Default,Capital,,,,0,,,,0
+10,14c,14c - Total SREP leverage ratio requirements (%),Default,Capital,,,,0.03,,,,0.03
+11,14d,14d - Leverage ratio buffer requirement (%),Default,Capital,,,,0,,,,0
+15,16a,16a - Cash outflows - Total weighted value,Default,Capital,,,,4237828908.071033,,,,9581365417.166668
+12,14e,14e - Overall leverage ratio requirement (%),Default,Capital,,,,0.03,,,,0.03
+16,16b,16b - Cash inflows - Total weighted value,Default,Capital,,,,467637880.6083333,,,,361274888.64166665
+24,4a,4a - Total risk exposure pre-floor,Default,Capital,30604000000,38074000000,30604000000,10300363131,51720,,,25000
+26,5b,5b - Common Equity Tier 1 ratio,Default,Capital,0.16079999999999997,0.1893,7447,0.2062546611202576,0.153,,0.1893,0.1419
+28,6b,6b - Tier 1 ratio,Default,Capital,0.1837,0.1893,0.1837,0.2276131314190267,0.163,,0.1893,0.1419
+2,10a,10a - Other Systemically Important Institution buffer (%),Default,Capital,,,,0.019375000032705158,,,,0.009999999992745557
+4,11a,11a - Overall capital requirements (%),Default,Capital,,,,0.160897460121,,,,0.14539
+31,7d,7d - Additional own funds requirements to address risks other than the risk of excessive leverage (%),Default,Capital,,,,0.027499999999999997,,,,0.028999999999999998
+30,7b,7b - Total capital ratio,Default,Capital,0.2169,0.2167,0.2169,0.2583348638449085,0.196,,0.2167,0.2021
+33,7f,7f - of which: to be made up of Tier 1 capital (percentage points),Default,Capital,,,,0.020625000000000004,,,,0.021750000000000005
+32,7e,7e - of which: to be made up of CET1 capital (percentage points),Default,Capital,,,,0.015468750000000003,,,,0.016310000000000005
+34,7g,7g - Total SREP own funds requirements (%),Default,Capital,,,,0.1075,,,,0.109
+36,8a,8a - Conservation buffer due to macro-prudential or systemic risk identified at the level of a Member State (%),Default,Capital,,,,0,,,,0
+38,9a,9a - Systemic risk buffer (%),Default,Capital,,,,0,,,,0

@@ -1,0 +1,156 @@
+======================================================================
+PILLAR 3 PARSING SUMMARY REPORT (v2)
+Generated: 2026-01-12 14:07:35
+======================================================================
+
+Files Processed: 7
+Files Failed: 0
+Total Items Extracted: 589
+Total Items Mapped to EBA: 382
+Fallback (Geometric) Used: 28 times
+Items Saved to DB: 2171
+
+----------------------------------------------------------------------
+TEMPLATE GAPS IDENTIFIED (Detected in Index but NOT Parsed):
+----------------------------------------------------------------------
+
+Alpha Bank_Q2_2025:
+  Gap Templates: SEC5
+
+Eurobank_Q2_2025:
+  Gap Templates: CCR3, CCR5, CCR6, CCR7, CCR8, CCYB1, CCYB2, CMS1, CQ4, CQ5, CR2, MR3, MR4, SEC1, SEC5
+
+NBG_Q2_2025:
+  Gap Templates: CCR3, CCR5, CCR6, CCR8, CCYB2, CR2, MR3, SEC1, SEC5
+
+Piraeus_Q2_2025:
+  Gap Templates: CCR3, CCR5, CCR8, CCYB1, CCYB2, CQ4, CQ5, CR10, CR2, SEC1, SEC4, SEC5
+
+Eurobank_Q3_2025:
+  Gap Templates: CCR7, CMS1
+
+NBG_Q3_2025:
+  Gap Templates: CMS1
+
+----------------------------------------------------------------------
+EXTRACTION BY FILE:
+----------------------------------------------------------------------
+
+2025-06-30_Alpha_Bank.pdf:
+  CC2: 4 items
+  CCR1: 8 items
+  CQ7: 2 items
+  CR1: 9 items
+  CR5: 2 items
+  IRRBB1: 6 items
+  KM1: 26 items
+  LIQ1: 7 items
+  LIQ2: 10 items
+  LR2: 8 items
+  MR2: 11 items
+  OV1: 10 items
+
+2025-06-30_Eurobank.pdf:
+  CC1: 28 items
+  CC2: 4 items
+  CCR1: 6 items
+  CQ7: 2 items
+  CR1: 8 items
+  CR4: 23 items
+  CR5: 3 items
+  IRRBB1: 3 items
+  KM1: 21 items
+  KM2: 2 items
+  LIQ1: 6 items
+  LIQ2: 3 items
+  LR1: 1 items
+  LR2: 2 items
+  MR2: 3 items
+  OV1: 12 items
+
+2025-06-30_NBG.pdf:
+  CC1: 30 items
+  CC2: 2 items
+  CCR1: 6 items
+  CQ7: 3 items
+  CR1: 6 items
+  CR4: 41 items
+  CR5: 3 items
+  IRRBB1: 6 items
+  KM1: 15 items
+  KM2: 5 items
+  LIQ1: 12 items
+  LIQ2: 5 items
+  MR2: 5 items
+  OV1: 16 items
+
+2025-06-30_Piraeus.pdf:
+  CC2: 1 items
+  CCR1: 1 items
+  CQ7: 1 items
+  CR1: 5 items
+  CR3: 1 items
+  CR4: 4 items
+  CR5: 3 items
+  IRRBB1: 6 items
+  KM1: 12 items
+  LIQ1: 2 items
+  LR1: 3 items
+  LR2: 6 items
+  LR3: 1 items
+  OV1: 9 items
+
+2025-09-30_Alpha_Bank.pdf:
+  KM1: 29 items
+  LIQ1: 6 items
+  MR2: 9 items
+  OV1: 10 items
+
+2025-09-30_Eurobank.pdf:
+  CC2: 4 items
+  KM1: 22 items
+  LIQ1: 5 items
+  MR2: 4 items
+  OV1: 9 items
+
+2025-09-30_NBG.pdf:
+  KM1: 19 items
+  KM2: 5 items
+  LIQ1: 10 items
+  MR2: 7 items
+  OV1: 10 items
+
+----------------------------------------------------------------------
+WARNINGS:
+----------------------------------------------------------------------
+[WARN] Missing CRITICAL templates in index: ['CC1']
+[WARN] LIQ1: Only 7 items (expected 8+)
+[WARN] CR5: Only 2 items (expected 3+)
+[WARN] CQ7: Only 2 items (expected 3+)
+[WARN] LR1: Only 1 items (expected 5+)
+[WARN] LR2: Only 2 items (expected 3+)
+[WARN] LIQ1: Only 6 items (expected 8+)
+[WARN] LIQ2: Only 3 items (expected 5+)
+[WARN] KM2: Only 2 items (expected 5+)
+[WARN] IRRBB1: Only 3 items (expected 5+)
+[WARN] CQ7: Only 2 items (expected 3+)
+[WARN] Missing CRITICAL templates in index: ['CC1']
+[WARN] KM1: Only 12 items (expected 15+)
+[WARN] OV1: Only 9 items (expected 10+)
+[WARN] LR1: Only 3 items (expected 5+)
+[WARN] LR3: Only 1 items (expected 5+)
+[WARN] LIQ1: Only 2 items (expected 8+)
+[WARN] CR3: Only 1 items (expected 2+)
+[WARN] CR4: Only 4 items (expected 5+)
+[WARN] CCR1: Only 1 items (expected 2+)
+... and 2 more warnings
+
+----------------------------------------------------------------------
+ERRORS:
+----------------------------------------------------------------------
+[ERROR] CRITICAL: CC1 not extracted (expected 20+)
+[ERROR] CRITICAL: CC1 not extracted (expected 20+)
+
+======================================================================
+END OF REPORT
+======================================================================

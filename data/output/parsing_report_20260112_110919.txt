@@ -1,0 +1,80 @@
+======================================================================
+PILLAR 3 PARSING SUMMARY REPORT (v2)
+Generated: 2026-01-12 11:09:19
+======================================================================
+
+Files Processed: 6
+Files Failed: 0
+Total Items Extracted: 332
+Total Items Mapped to EBA: 265
+Fallback (Geometric) Used: 3 times
+Items Saved to DB: 332
+
+----------------------------------------------------------------------
+EXTRACTION BY FILE:
+----------------------------------------------------------------------
+
+20250930-pillar-III-disclosures-final.pdf:
+  KM1: 29 items
+  LIQ1: 3 items
+  OV1: 9 items
+
+Pillar-3-092025-Holdings.pdf:
+  KM1: 22 items
+  LIQ1: 7 items
+  OV1: 8 items
+
+Pillar_III_EN_20250630.pdf:
+  CCR1: 1 items
+  CR1: 4 items
+  CR3: 1 items
+  KM1: 13 items
+  LR1: 3 items
+  LR2: 3 items
+  LR3: 1 items
+  OV1: 6 items
+
+consolidated-pillar-3-report.pdf:
+  CC1: 28 items
+  CCR1: 6 items
+  CR1: 8 items
+  KM1: 21 items
+  KM2: 2 items
+  LIQ1: 10 items
+  LIQ2: 3 items
+  LR1: 1 items
+  LR2: 2 items
+  OV1: 9 items
+
+pillar-3-q2-2025-site.pdf:
+  CC1: 30 items
+  CCR1: 6 items
+  CR1: 6 items
+  KM1: 15 items
+  KM2: 5 items
+  LIQ1: 13 items
+  LIQ2: 5 items
+  OV1: 9 items
+
+pillar-3-q3-2025-site.pdf:
+  KM1: 19 items
+  KM2: 5 items
+  LIQ1: 10 items
+  OV1: 9 items
+
+----------------------------------------------------------------------
+WARNINGS:
+----------------------------------------------------------------------
+[WARN] LIQ1: Only 3 items (expected 5+)
+[WARN] LR3: Only 1 items (expected 3+)
+[WARN] LR1: Only 1 items (expected 3+)
+[WARN] KM2: Only 2 items (expected 3+)
+
+----------------------------------------------------------------------
+ERRORS:
+----------------------------------------------------------------------
+[ERROR] CRITICAL: LIQ1 not extracted (expected 5+)
+
+======================================================================
+END OF REPORT
+======================================================================

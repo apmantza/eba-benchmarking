@@ -1,0 +1,15 @@
+[theme]
+base = "light"
+primaryColor = "#0056D2" # Professional 'Financial' Blue (e.g. similar to Visa/Chase)
+backgroundColor = "#FCFCFC" # Very clean white
+secondaryBackgroundColor = "#F0F4F8" # Distinct but subtle sidebar/block color
+textColor = "#171717" # High contrast text
+font = "sans serif"
+
+[server]
+headless = true
+port = 8501
+address = "localhost"
+
+[browser]
+gatherUsageStats = false
