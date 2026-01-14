@@ -22,7 +22,7 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
             return
 
         col1, col2, col3 = st.columns(3)
-        col4, col5, col6 = st.columns(3)
+        col4, col5 = st.columns(2)
         
         filters = {}
 
@@ -31,12 +31,13 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
             filters['status'] = st.multiselect("Status", options=options_map.get('status', []), key="cre_status")
         
         with col2:
-            filters['exposure_class'] = st.multiselect("Exposure Class", options=options_map.get('exposure_class', []), key="cre_exp_class")
+            filters['exposure'] = st.multiselect("Exposure Class", options=options_map.get('exposure', []), key="cre_exposure")
             filters['perf_status'] = st.multiselect("Perf. Status", options=options_map.get('perf_status', []), key="cre_perf_status")
             
         with col3:
-            filters['counterparty_sector'] = st.multiselect("Counterparty Sector", options=options_map.get('counterparty_sector', []), key="cre_sector")
-            filters['residence'] = st.multiselect("Residence", options=options_map.get('residence', []), key="cre_residence")
+            # Replaced/Removed Residence and Sector
+            filters['country'] = st.multiselect("Country", options=options_map.get('country', []), key="cre_country")
+            # filters['counterparty_sector'] was removed as column doesn't exist
 
         with col4:
              filters['nace_codes'] = st.multiselect("NACE Codes", options=options_map.get('nace_codes', []), key="cre_nace")

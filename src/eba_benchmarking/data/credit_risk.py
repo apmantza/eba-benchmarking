@@ -17,14 +17,14 @@ def get_cre_filter_options(lei_list):
     conn = sqlite3.connect(DB_NAME)
     leis_str = "'" + "','".join([str(lei) for lei in lei_list]) + "'"
     
-    # Columns we want distinct values for
+    # Updated columns based on actual schema: 
+    # id, lei, period, item_id, portfolio, country, exposure, status, perf_status, nace_codes, amount
     filter_cols = [
         'portfolio', 
-        'exposure_class', 
-        'counterparty_sector', 
+        'exposure', 
         'status', 
         'perf_status', 
-        'residence', 
+        'country', 
         'nace_codes',
         'item_id' 
     ]
@@ -32,8 +32,6 @@ def get_cre_filter_options(lei_list):
     options = {}
     
     try:
-        # We can do this in one pass or multiple. 
-        # Multiple queries is likely safer/easier to map.
         for col in filter_cols:
             query = f"""
             SELECT DISTINCT {col} 
@@ -67,20 +65,12 @@ def get_cre_data(lei_list, filters=None):
     where_clauses = [f"f.lei IN ({leis_str})"]
     where_clauses.append(f"f.period >= '{MIN_PERIOD}'")
     
-    params = []
-    
     if filters:
         for col, values in filters.items():
             if values:
-                # Handle potentially large lists or lists needing escaping
-                # Using parameter substitution is safest but variable list length is tricky in raw SQL string
-                # We'll construct the IN clause string carefully
-                
-                # Filter out None/Empty if any
                 valid_vals = [str(v) for v in values if v is not None]
                 if not valid_vals:
                     continue
-                    
                 val_list_str = "'" + "','".join(valid_vals) + "'"
                 where_clauses.append(f"f.{col} IN ({val_list_str})")
     
@@ -93,11 +83,10 @@ def get_cre_data(lei_list, filters=None):
         f.period, 
         f.item_id, 
         f.portfolio, 
-        f.exposure_class, 
-        f.counterparty_sector, 
+        f.exposure, 
         f.status, 
         f.perf_status, 
-        f.residence, 
+        f.country, 
         f.nace_codes,
         f.amount
     FROM facts_cre f
