@@ -17,9 +17,10 @@ def get_mrk_filter_options(lei_list):
     conn = sqlite3.connect(DB_NAME)
     leis_str = "'" + "','".join([str(lei) for lei in lei_list]) + "'"
     
+    # Updated to valid column names: mkt_modprod instead of mkt_prod
     filter_cols = [
         'portfolio', 
-        'mkt_prod', 
+        'mkt_modprod', 
         'mkt_risk', 
         'item_id'
     ]
@@ -57,16 +58,10 @@ def get_mrk_dim_maps():
     maps = {}
     
     # Mapping: filter_key -> (dim_table, id_col, label_col)
-    # facts_mrk.mkt_prod -> dim_mkt_modprod.mkt_modprod (assuming column name is mkt_modprod or similar)
-    # facts_mrk.mkt_risk -> dim_mkt_risk.mkt_risk
-    
-    # We should verify column names in dim tables first if guessing.
-    # Assuming standard pattern: table dim_X has column X.
-    # dim_mkt_modprod likely has `mkt_modprod` column.
-    
+    # facts_mrk has mkt_modprod
     dim_configs = {
         'portfolio': ('dim_portfolio', 'portfolio', 'label'),
-        'mkt_prod': ('dim_mkt_modprod', 'mkt_modprod', 'label'),
+        'mkt_modprod': ('dim_mkt_modprod', 'mkt_modprod', 'label'),
         'mkt_risk': ('dim_mkt_risk', 'mkt_risk', 'label')
     }
     
@@ -111,6 +106,7 @@ def get_mrk_data(lei_list, filters=None):
     
     where_sql = " AND ".join(where_clauses)
     
+    # Updated query to use mkt_modprod
     query = f"""
     SELECT 
         f.lei, 
@@ -121,8 +117,8 @@ def get_mrk_data(lei_list, filters=None):
         f.portfolio,
         COALESCE(dp.label, f.portfolio) as "Portfolio Label",
         
-        f.mkt_prod,
-        COALESCE(dmp.label, f.mkt_prod) as "Product Label",
+        f.mkt_modprod,
+        COALESCE(dmp.label, f.mkt_modprod) as "Product Label",
         
         f.mkt_risk,
         COALESCE(dmr.label, f.mkt_risk) as "Risk Label",
@@ -133,7 +129,7 @@ def get_mrk_data(lei_list, filters=None):
     JOIN institutions i ON f.lei = i.lei
     
     LEFT JOIN dim_portfolio dp ON f.portfolio = dp.portfolio
-    LEFT JOIN dim_mkt_modprod dmp ON f.mkt_prod = dmp.mkt_modprod
+    LEFT JOIN dim_mkt_modprod dmp ON f.mkt_modprod = dmp.mkt_modprod
     LEFT JOIN dim_mkt_risk dmr ON f.mkt_risk = dmr.mkt_risk
     
     WHERE {where_sql}

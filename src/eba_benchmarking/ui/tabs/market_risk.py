@@ -42,7 +42,8 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
             filters['mkt_risk'] = st.multiselect("Market Risk Type", options=options_map_ids.get('mkt_risk', []), format_func=get_label_func('mkt_risk'), key="mrk_risk")
             
         with col3:
-            filters['mkt_prod'] = st.multiselect("Market Product", options=options_map_ids.get('mkt_prod', []), format_func=get_label_func('mkt_prod'), key="mrk_prod")
+            # Updated to mkt_modprod
+            filters['mkt_modprod'] = st.multiselect("Market Product", options=options_map_ids.get('mkt_modprod', []), format_func=get_label_func('mkt_modprod'), key="mrk_prod")
 
         with col4:
              filters['item_id'] = st.multiselect("Item ID", options=options_map_ids.get('item_id', []), key="mrk_item_id")
@@ -56,15 +57,11 @@ def render_market_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
 
     # --- DISPLAY & EXPORT ---
     st.subheader(f"Results ({len(df)} rows)")
-    
-    # Calculate simple totals (but do NOT display total amount per user request for similar style)
-    # total_amount = df['amount'].sum()
-    # st.metric("Total Amount (Filtered)", format_value(total_amount, 'M', decimals=0))
 
     cols_order = [
         'period', 'Bank', 'item_id', 
         'Portfolio Label', 'portfolio', 
-        'Product Label', 'mkt_prod',
+        'Product Label', 'mkt_modprod',
         'Risk Label', 'mkt_risk',
         'amount'
     ]
