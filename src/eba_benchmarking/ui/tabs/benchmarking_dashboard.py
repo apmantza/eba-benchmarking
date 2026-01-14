@@ -275,7 +275,7 @@ def render_custom_explorer(base_lei, base_name, country_iso, region, systemic_im
     with col1:
         # Category Filter
         available_categories = sorted(df_metrics['category'].unique().tolist())
-        selected_categories = st.multiselect("Filter by Category", available_categories)
+        selected_categories = st.multiselect("Filter by Category", available_categories, key="explorer_category_filter")
     
     # Pre-process metrics
     all_metrics_map = {}
@@ -295,17 +295,12 @@ def render_custom_explorer(base_lei, base_name, country_iso, region, systemic_im
     # Determine default value (from update or empty)
     default_selection = st.session_state.get('explorer_selection_override', [])
     
-    # Only keep saved selections if they are in the current filtered list (or if NO filter is applied)
-    # If a filter is applied, we only show options from that filter.
-    # However, for UX, if we have a saved list, we probably want to see those.
-    # But filtering the options list is key.
-    
     # Clear override after reading
     if 'explorer_selection_override' in st.session_state:
         del st.session_state.explorer_selection_override
         
     with col2:
-        selected_metric_strs = st.multiselect("Select Metrics", all_options, default=default_selection)
+        selected_metric_strs = st.multiselect("Select Metrics", all_options, default=default_selection, key="explorer_metric_select")
         
     # Cache selection for saving
     st.session_state.explorer_selection_cache = selected_metric_strs
