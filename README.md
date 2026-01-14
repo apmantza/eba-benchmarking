@@ -23,6 +23,7 @@ A comprehensive Streamlit-based dashboard for benchmarking European banks using 
 - **Weighted Averages**: All peer group calculations use asset-weighted methodology
 - **Period-over-Period Analysis**: Historical trends with quarterly granularity
 - **Executive Insights**: Automated comparative analysis with rule-based insights
+- **Deep-Dive Explorers**: Granular access to raw Credit and Market risk data with dynamic filters, human-readable labels, and CSV/Excel export capabilities
 
 ## Quick Start
 
@@ -89,6 +90,8 @@ streamlit run src/app.py
 | **RWA** | Risk-weighted assets breakdown |
 | **Profitability** | RoE, RoA, Cost-to-Income |
 | **Liquidity** | Loan-to-Deposit, Funding |
+| **Credit Risk** | Deep-dive into exposures, NPLs with granular filters |
+| **Market Risk** | Deep-dive into market risk exposures and products |
 | **Sovereign** | Country exposure analysis |
 | **Yields** | Interest rate analysis |
 | **Market** | Stock prices, P/B, P/E |
