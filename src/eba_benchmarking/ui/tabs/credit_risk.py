@@ -73,9 +73,7 @@ def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     # --- DISPLAY & EXPORT ---
     st.subheader(f"Results ({len(df)} rows)")
     
-    # Calculate simple totals
-    total_amount = df['amount'].sum()
-    st.metric("Total Amount (Filtered)", format_value(total_amount, 'M', decimals=0))
+    # Total Amount display removed as requested
 
     # Reorder columns to show Labels next to IDs, or hide IDs if preferred. 
     # Current query returns: lei, Bank, period, item_id, portfolio, "Portfolio Label", etc.

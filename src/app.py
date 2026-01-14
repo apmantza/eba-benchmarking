@@ -166,7 +166,8 @@ with tabs[5]:
 
 # 6. MARKET RISK & 7. CREDIT RISK (Generic)
 with tabs[6]:
-    render_generic_tab("Market Risk", selected_leis)
+    from eba_benchmarking.ui.tabs.market_risk import render_market_risk_tab
+    render_market_risk_tab(selected_leis, base_bank_name)
 with tabs[7]:
     from eba_benchmarking.ui.tabs.credit_risk import render_credit_risk_tab
     render_credit_risk_tab(selected_leis, base_bank_name)
