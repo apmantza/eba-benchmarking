@@ -9,7 +9,8 @@ from .base import MIN_PERIOD
 def get_cre_filter_options(lei_list):
     """
     Fetches distinct values for filterable columns in facts_cre for the selected LEIs.
-    Returns a dictionary of column_name -> list of values.
+    Returns a dictionary of column_name -> list of values (as strings).
+    Use these IDs to look up labels in the UI.
     """
     if not lei_list or not os.path.exists(DB_NAME):
         return {}
@@ -17,8 +18,7 @@ def get_cre_filter_options(lei_list):
     conn = sqlite3.connect(DB_NAME)
     leis_str = "'" + "','".join([str(lei) for lei in lei_list]) + "'"
     
-    # Updated columns based on actual schema: 
-    # id, lei, period, item_id, portfolio, country, exposure, status, perf_status, nace_codes, amount
+    # Columns in facts_cre
     filter_cols = [
         'portfolio', 
         'exposure', 
@@ -41,7 +41,8 @@ def get_cre_filter_options(lei_list):
             ORDER BY {col}
             """
             df_col = pd.read_sql(query, conn)
-            options[col] = df_col[col].tolist()
+            # Ensure we return strings to match filter keys
+            options[col] = [str(x) for x in df_col[col].tolist()]
             
     except Exception as e:
         st.error(f"Error fetching filter options: {e}")
@@ -51,10 +52,53 @@ def get_cre_filter_options(lei_list):
     return options
 
 @st.cache_data
+def get_dim_maps():
+    """
+    Fetches all relevant dimension mappings (id -> label).
+    Returns a dict of dicts: { 'dim_table': {id: label, ...}, ... }
+    """
+    if not os.path.exists(DB_NAME):
+        return {}
+    
+    conn = sqlite3.connect(DB_NAME)
+    maps = {}
+    
+    # Define mapping: fact_column -> (dim_table, id_col, label_col)
+    dim_configs = {
+        'portfolio': ('dim_portfolio', 'portfolio', 'label'),
+        'exposure': ('dim_exposure', 'exposure', 'label'),
+        'status': ('dim_status', 'status', 'label'),
+        'perf_status': ('dim_perf_status', 'perf_status', 'label'),
+        'country': ('dim_country', 'country', 'label'),
+        'nace_codes': ('dim_nace_codes', 'nace_codes', 'label')
+    }
+    
+    try:
+        for key, (table, id_col, label_col) in dim_configs.items():
+            try:
+                # Some tables might not exist or columns might differ slightly, fail gracefully per table
+                df = pd.read_sql(f"SELECT {id_col}, {label_col} FROM {table}", conn)
+                # Create map: str(id) -> label
+                maps[key] = pd.Series(df[label_col].values, index=df[id_col].astype(str)).to_dict()
+            except Exception:
+                maps[key] = {}
+        
+        # Item labels are usually in a different structure or just raw IDs, 
+        # but if we have an item_labels table we could use it. 
+        # For now items are just IDs or handled elsewhere.
+        
+    except Exception as e:
+        st.error(f"Error fetching dimension maps: {e}")
+    finally:
+        conn.close()
+
+    return maps
+
+@st.cache_data
 def get_cre_data(lei_list, filters=None):
     """
     Fetches data from facts_cre based on selected LEIs and filters.
-    filters: dict of col_name -> list of selected values (or empty for all).
+    Joins with dimension tables to return human-readable labels where possible.
     """
     if not lei_list or not os.path.exists(DB_NAME):
         return pd.DataFrame()
@@ -76,21 +120,45 @@ def get_cre_data(lei_list, filters=None):
     
     where_sql = " AND ".join(where_clauses)
     
+    # Updated query to left join all dims
+    # We use COALESCE to fallback to the ID if label is missing
     query = f"""
     SELECT 
         f.lei, 
         i.commercial_name as Bank, 
         f.period, 
         f.item_id, 
-        f.portfolio, 
-        f.exposure, 
-        f.status, 
-        f.perf_status, 
-        f.country, 
+        
+        f.portfolio,
+        COALESCE(dp.label, f.portfolio) as "Portfolio Label",
+        
+        f.exposure,
+        COALESCE(de.label, f.exposure) as "Exposure Label",
+        
+        f.status,
+        COALESCE(ds.label, f.status) as "Status Label",
+        
+        f.perf_status,
+        COALESCE(dps.label, f.perf_status) as "Perf Status Label",
+        
+        f.country,
+        COALESCE(dc.label, f.country) as "Country Label",
+        
         f.nace_codes,
+        COALESCE(dn.label, f.nace_codes) as "NACE Label",
+        
         f.amount
+        
     FROM facts_cre f
     JOIN institutions i ON f.lei = i.lei
+    
+    LEFT JOIN dim_portfolio dp ON f.portfolio = dp.portfolio
+    LEFT JOIN dim_exposure de ON f.exposure = de.exposure
+    LEFT JOIN dim_status ds ON f.status = ds.status
+    LEFT JOIN dim_perf_status dps ON f.perf_status = dps.perf_status
+    LEFT JOIN dim_country dc ON f.country = dc.country
+    LEFT JOIN dim_nace_codes dn ON f.nace_codes = dn.nace_codes
+    
     WHERE {where_sql}
     ORDER BY f.period DESC, i.commercial_name
     """
