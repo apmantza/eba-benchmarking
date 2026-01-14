@@ -55,3 +55,28 @@ def get_item_mapping(conn, year):
         return dict(zip(df['original_item_id'], df['canonical_item_id']))
     except:
         return {}
+
+def format_value(val, unit=None, decimals=2):
+    """
+    Format a numeric value with optional unit sealing and decimal precision.
+    unit: 'M' (Millions), 'B' (Billions), 'K' (Thousands), '%' (Percentage)
+    """
+    if pd.isna(val) or val is None:
+        return "-"
+    
+    try:
+        val = float(val)
+    except:
+        return val
+
+    if unit == 'M':
+         return f"{val/1e6:,.{decimals}f}M"
+    elif unit == 'B':
+         return f"{val/1e9:,.{decimals}f}B"
+    elif unit == 'K':
+         return f"{val/1e3:,.{decimals}f}K"
+    elif unit == '%':
+         # Assumes val is 0.12 for 12%
+         return f"{val*100:,.{decimals}f}%"
+    else:
+         return f"{val:,.{decimals}f}"

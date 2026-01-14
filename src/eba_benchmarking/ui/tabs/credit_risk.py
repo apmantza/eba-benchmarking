@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import io
 from ...data.credit_risk import get_cre_filter_options, get_cre_data
-from ..utils import format_value
+from eba_benchmarking.utils import format_value
 
 def render_credit_risk_tab(selected_leis, base_bank_name=None, *args, **kwargs):
     st.header("Credit Risk Deep-Dive")
