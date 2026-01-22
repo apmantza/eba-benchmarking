@@ -25,7 +25,6 @@ import eba_benchmarking.ingestion.fetchers.bog as bog
 import eba_benchmarking.ingestion.parsers.kri as kri_parser
 import eba_benchmarking.ingestion.parsers.map_kris as map_kris
 import eba_benchmarking.ingestion.processors.cleanup_db as cleanup_db
-import eba_benchmarking.ingestion.processors.cleanup_bank_models as cleanup_bank_models
 
 # Import Pillar 3 parser
 try:
@@ -57,7 +56,6 @@ def run_pipeline():
         ("Fetching BoG Data (Direct)", bog.main),
         ("Parsing EBA Country KRIs (Annex)", kri_parser.main),
         ("Mapping KRIs to Dictionary", map_kris.main),
-        ("Cleaning bank_models table", cleanup_bank_models.main),
         ("Cleaning and Normalizing Database", cleanup_db.main),
     ]
     

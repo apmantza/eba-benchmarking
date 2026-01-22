@@ -6,30 +6,26 @@ from .basic import sort_with_base_first, apply_standard_layout, format_amount
 def plot_solvency_trend(df_bank, df_benchmarks, metric_col, title, base_bank_name, df_eu_kri=None):
     """Advanced Trend Chart comparing Base Bank vs Benchmarks & EU Average."""
     fig = go.Figure()
-    
+
+    # Determine if metric is an amount (needs scaling) or ratio
+    is_amount = 'Amount' in title or ('Capital' in metric_col and 'Ratio' not in metric_col)
+    hovertemplate = '%{y:,.1f}B' if is_amount else None
+
     # 1. Base Bank
     d_bank = df_bank[df_bank['name'] == base_bank_name].copy()
     if d_bank.empty:
-        # Fallback if base bank data is missing entirely? Just plot others?
-        # But per requirements we usually center on base bank. 
-        # Let's try to infer min_date from bank data if present, else min allowed
+        # Fallback if base bank data is missing entirely
         min_date = pd.to_datetime('2000-01-01')
     else:
         d_bank['period_dt'] = pd.to_datetime(d_bank['period'])
         d_bank = d_bank.sort_values('period_dt')
         min_date = d_bank['period_dt'].min()
-        
-        # Format Amount to Billions if applicable (heuristic: large values)
-        # Check if values are likely amounts (e.g. > 1000) vs ratios (0-1 or 0-100)
-        # Or better, check metric name. 
-        is_amount = 'Amount' in title or 'Capital' in metric_col and 'Ratio' not in metric_col
+
         y_vec = d_bank[metric_col] / 1000.0 if is_amount else d_bank[metric_col]
-        
-        hovertemplate = '%{y:,.1f}B' if is_amount else None
-        
+
         fig.add_trace(go.Scatter(
-            x=d_bank['period_dt'], y=y_vec, 
-            name=base_bank_name, 
+            x=d_bank['period_dt'], y=y_vec,
+            name=base_bank_name,
             line=dict(color=CHART_COLORS['base_bank'], width=4),
             hovertemplate=hovertemplate
         ))

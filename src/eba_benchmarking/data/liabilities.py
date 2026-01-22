@@ -32,7 +32,7 @@ def get_liabilities_kpis(lei_list):
     
     # 2. Fetch Total Liabilities from 2521214
     query_tot = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, SUM(f.amount) as total_liabilities
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, SUM(f.amount) as total_liabilities
     FROM facts_oth f
     JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str}) AND f.item_id = '2521214' AND f.period >= '{MIN_PERIOD}'

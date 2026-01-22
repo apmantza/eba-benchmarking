@@ -251,9 +251,13 @@ Bank master data with identification and classification.
 | 3 | country_name | TEXT | Full country name |
 | 4 | commercial_name | TEXT | Trading name |
 | 5 | short_name | TEXT | Abbreviated name |
-| 6 | ticker | TEXT | Stock exchange ticker |
-| 7 | region | TEXT | Geographic region |
-| 8 | Systemic_Importance | TEXT | GSIB/OSII/Other |
+| 6 | ticker | TEXT | Yahoo Finance stock ticker |
+| 7 | bond_ticker | TEXT | Bond ticker symbol |
+| 8 | region | TEXT | Geographic region |
+| 9 | Systemic_Importance | TEXT | GSIB/OSII/Other |
+| 10 | trading_status | TEXT | Public/Private trading status |
+| 11 | bank_type | TEXT | Bank type (Cooperative, State-owned, Landesbank, etc.) |
+| 12 | majority_owner | TEXT | Majority owner (if applicable) |
 
 ---
 
@@ -775,11 +779,17 @@ ECB and other central bank policy rates.
 | 4 | commercial_name | TEXT | 0 | None | 0 |
 | 5 | short_name | TEXT | 0 | None | 0 |
 | 6 | ticker | TEXT | 0 | None | 0 |
+| 7 | bond_ticker | TEXT | 0 | None | 0 |
+| 8 | region | TEXT | 0 | None | 0 |
+| 9 | Systemic_Importance | TEXT | 0 | None | 0 |
+| 10 | trading_status | TEXT | 0 | None | 0 |
+| 11 | bank_type | TEXT | 0 | None | 0 |
+| 12 | majority_owner | TEXT | 0 | None | 0 |
 
 ### Sample Data (Limit 3)
-- ('529900S9YO2JHTIIDG38', 'BAWAG Group AG', 'AT', 'Austria', 'BAWAG', None, None)
-- ('9ZHRYM6F437SQJ6OUG95', 'Raiffeisen Bank International AG', 'AT', 'Austria', 'Raiffeisen', None, None)
-- ('529900SXEWPJ1MRRX537', 'Raiffeisen-Holding Niederösterreich-Wien', 'AT', 'Austria', 'Raiffeisen', None, None)
+- ('529900S9YO2JHTIIDG38', 'BAWAG Group AG', 'AT', 'Austria', 'BAWAG Group AG', 'BAWAG Group AG', 'BG.VI', None, 'Western Europe', 'Other', 'Public', None, None)
+- ('9ZHRYM6F437SQJ6OUG95', 'Raiffeisen Bank International AG', 'AT', 'Austria', 'Raiffeisen Bank International AG', 'Raiffeisen Bank International A', 'RBI.VI', None, 'Western Europe', 'Other', 'Public', None, None)
+- ('529900SXEWPJ1MRRX537', 'Raiffeisen-Holding Niederösterreich-Wien', 'AT', 'Austria', 'Raiffeisen-Holding Niederösterreich-Wien', 'Raiffeisen-Holding Niederösterr', None, None, 'Western Europe', 'Other', 'Private', None, None)
 
 ---
 ## Table: `item_mappings`

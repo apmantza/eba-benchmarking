@@ -16,21 +16,20 @@ def get_master_data():
     conn = sqlite3.connect(DB_NAME)
     try:
         query = """
-        SELECT 
-            i.lei, 
-            i.name, 
-            i.commercial_name,
-            i.short_name,
-            i.country_iso, 
-            i.country_name,
-            i.region,
-            i.Systemic_Importance,
-            COALESCE(b.business_model, 'Unclassified') as business_model,
-            COALESCE(b.size_category, 'Unknown') as size_category,
-            COALESCE(b.total_assets, 0) as total_assets
-        FROM institutions i
-        LEFT JOIN bank_models b ON i.lei = b.lei
-        ORDER BY i.commercial_name
+        SELECT
+            lei,
+            name,
+            commercial_name,
+            short_name,
+            country_iso,
+            country_name,
+            region,
+            Systemic_Importance,
+            COALESCE(business_model, 'Unclassified') as business_model,
+            COALESCE(size_category, 'Unknown') as size_category,
+            COALESCE(total_assets, 0) as total_assets
+        FROM institutions
+        ORDER BY commercial_name
         """
         df = pd.read_sql(query, conn)
         df = df[df['commercial_name'].notna()].copy()

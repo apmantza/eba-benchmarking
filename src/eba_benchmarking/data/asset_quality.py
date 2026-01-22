@@ -15,12 +15,12 @@ def get_aq_breakdown(lei_list):
     
     # Main query: NPE items (2520603=Exp, 2520613=Prov) + Forborne (2520703, 2520713) + Write-offs (2521708)
     query = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.perf_status, SUM(f.amount) as amount
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.perf_status, SUM(f.amount) as amount
     FROM facts_cre f JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str}) 
       AND f.item_id IN ('2520603', '2520613', '2520703', '2520713', '2521708') 
       AND f.period >= '{MIN_PERIOD}'
-    GROUP BY f.lei, i.commercial_name, f.period, f.item_id, f.perf_status
+    GROUP BY f.lei, f.period, f.item_id, f.perf_status
     """
     try:
         df = pd.read_sql(query, conn)

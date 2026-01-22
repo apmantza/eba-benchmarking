@@ -22,14 +22,14 @@ def get_liquidity_kpis(lei_list):
     
     # Query 1: Loans
     query_loans = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, 
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, 
            SUM(CASE WHEN f.item_id IN ('2521017', '2521019') THEN f.amount ELSE 0 END) as loans
     FROM facts_oth f
     JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str}) 
       AND f.item_id IN ('2521017', '2521019')
       AND f.period >= '{MIN_PERIOD}'
-    GROUP BY f.lei, i.commercial_name, f.period
+    GROUP BY f.lei, f.period
     """
     
     # Query 2: Customer Deposits (NFC + Households)

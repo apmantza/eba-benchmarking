@@ -78,8 +78,12 @@ def main():
         commercial_name TEXT,
         short_name TEXT,
         ticker TEXT,
+        bond_ticker TEXT,
         region TEXT,
-        Systemic_Importance TEXT
+        Systemic_Importance TEXT,
+        trading_status TEXT,
+        bank_type TEXT,
+        majority_owner TEXT
     )
     ''')
 
@@ -150,7 +154,20 @@ def main():
             
         df_banks['Systemic_Importance'] = df_banks.apply(classify_importance, axis=1)
         
-        # Tickers
+        # Tickers and Metadata from CSV
+        ticker_csv_path = os.path.join(ROOT_DIR, 'europe_bank_tickers.csv')
+        csv_metadata = {}
+        if os.path.exists(ticker_csv_path):
+            print(f"  - Loading CSV metadata from: {ticker_csv_path}")
+            df_csv = pd.read_csv(ticker_csv_path)
+            # Use LEI as index for reliable mapping
+            if 'lei' in df_csv.columns:
+                csv_metadata = df_csv.set_index('lei').to_dict('index')
+            else:
+                # Fallback to name if LEI is missing (shouldn't happen with new sync)
+                df_csv['clean_name'] = df_csv['name'].str.lower().str.strip()
+                csv_metadata = df_csv.set_index('clean_name').to_dict('index')
+
         # Tickers from auto-discovery
         lei_to_ticker = {}
         generated_tickers_path = get_path('generated_tickers.csv')
@@ -162,15 +179,40 @@ def main():
              except Exception as e:
                  print(f"  Warning: Could not load generated tickers: {e}")
 
+        def enrich_from_csv(row):
+            lei = row.get('lei')
+            meta = csv_metadata.get(lei, {})
+
+            # If LEI match failed, try name match as fallback
+            if not meta:
+                name = str(row.get('name', '')).lower().strip()
+                # Scenarios where csv_metadata was built by name
+                meta = csv_metadata.get(name, {})
+
+            return pd.Series({
+                'ticker_csv': meta.get('yfinance ticker'),
+                'bond_ticker': meta.get('bond ticker'),
+                'trading_status': meta.get('trading'),
+                'bank_type': meta.get('bank type'),
+                'majority_owner': meta.get('Majority owner')
+            })
+
+        print("  - Enriching with CSV data...")
+        csv_enrichment = df_banks.apply(enrich_from_csv, axis=1)
+        df_banks = pd.concat([df_banks, csv_enrichment], axis=1)
+
         def find_ticker(row):
+            # 1. Check CSV ticker
+            if pd.notna(row.get('ticker_csv')) and str(row['ticker_csv']).strip() != '':
+                return row['ticker_csv']
+
+            # 2. Check LEI mapping
             lei = row.get('lei')
             if lei in lei_to_ticker and pd.notna(lei_to_ticker[lei]):
                 return lei_to_ticker[lei]
                 
-            name = row.get('name')
-            if pd.isna(name):
-                return None
-            name_str = str(name)
+            # 3. Check hardcoded mappings
+            name_str = str(row.get('name', ''))
             for pattern, ticker in TICKER_MAPPINGS.items():
                 if pattern.lower() in name_str.lower():
                     return ticker
@@ -184,7 +226,13 @@ def main():
             lambda x: str(x)[:30] if pd.notna(x) else None
         )
         
-        df_banks.to_sql('institutions', conn, if_exists='append', index=False)
+        # Final column selection for SQL
+        final_cols = [
+            'lei', 'name', 'country_iso', 'country_name', 'commercial_name',
+            'short_name', 'ticker', 'bond_ticker', 'region', 'Systemic_Importance',
+            'trading_status', 'bank_type', 'majority_owner'
+        ]
+        df_banks[final_cols].to_sql('institutions', conn, if_exists='append', index=False)
         print(f"  > Success: Saved {len(df_banks)} institutions to DB.")
 
     # 3. Load Dictionary and Mappings
@@ -301,9 +349,6 @@ def main():
             
         except Exception as e:
             print(f"  [!] Skip {sheet}: {e}")
-
-    # Cleanup: Remove sum row from bank_models if it exists
-    cursor.execute("DELETE FROM bank_models WHERE lei LIKE '%XXXX%'")
 
     # Optimization: Index for UI sorting
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_inst_name ON institutions(commercial_name)")

@@ -268,7 +268,7 @@ def get_all_benchmarking_metrics(lei_list):
 
     query_prof = f"""
 
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, SUM(f.amount) as amount
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, SUM(f.amount) as amount
 
     FROM facts_oth f
 
@@ -280,7 +280,7 @@ def get_all_benchmarking_metrics(lei_list):
 
       AND f.period >= '{MIN_PERIOD}'
 
-    GROUP BY f.lei, i.commercial_name, f.period, f.item_id
+    GROUP BY f.lei, f.period, f.item_id
 
     """
 
@@ -1639,13 +1639,13 @@ def get_custom_metric_data(item_ids, item_labels, lei_list):
     
     # We aggregate (SUM) over all dimensions for simplicity in this explorer
     query = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, SUM(f.amount) as value
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, SUM(f.amount) as value
     FROM facts_oth f
     JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str})
       AND f.item_id IN ({item_ids_str})
       AND f.period >= '{MIN_PERIOD}'
-    GROUP BY f.lei, i.commercial_name, f.period, f.item_id
+    GROUP BY f.lei, f.period, f.item_id
     """
     
     try:

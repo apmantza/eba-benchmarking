@@ -8,5 +8,5 @@ from .liquidity import get_liquidity_kpis, get_liquidity_averages
 from .profitability import get_profitability_kpis, get_profitability_averages, get_nii_analysis, get_nii_averages
 from .benchmarks import get_macro_data, get_ecb_benchmarks, get_eba_kris
 from .generic import get_tab_data, get_financial_data
-from .market import get_market_data, refresh_market_data, get_market_history, refresh_market_history
+from .market import get_market_data, refresh_market_data, get_market_history, refresh_market_history, get_market_financial_years, get_market_benchmarking_stats, get_market_fy_averages
 from .benchmarking import get_benchmarking_report, get_underlying_bank_data, get_benchmarking_peer_groups, get_all_benchmarking_metrics

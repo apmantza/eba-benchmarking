@@ -74,7 +74,7 @@ def get_tab_data(tab_name, lei_list):
         query = f"""
         SELECT 
             f.lei, 
-            i.commercial_name as name, 
+            COALESCE(i.short_name, i.commercial_name) as name, 
             f.period, 
             f.item_id, 
             f.amount 
@@ -112,7 +112,7 @@ def get_financial_data(lei_list):
     conn = sqlite3.connect(DB_NAME)
     leis_str = "'" + "','".join([str(lei) for lei in lei_list]) + "'"
     sql_oth = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, CASE 
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, CASE 
         WHEN f.item_id = '2520140' THEN 'CET1 Ratio' WHEN f.item_id = '2520141' THEN 'Tier 1 Ratio' WHEN f.item_id = '2520142' THEN 'Total Capital Ratio' WHEN f.item_id = '2520905' THEN 'Leverage Ratio'
         WHEN f.item_id = '2520129' THEN 'AT1 Capital' WHEN f.item_id = '2520135' THEN 'Tier 2 Capital' WHEN f.item_id = '2520138' THEN 'Total Risk Exposure Amount (Cap)'
         WHEN f.item_id = '2520316' THEN 'Total Operating Income' WHEN f.item_id = '2520317' THEN 'Admin Expenses' WHEN f.item_id = '2520318' THEN 'Depreciation' WHEN f.item_id = '2520309' THEN 'Net Fee Income'

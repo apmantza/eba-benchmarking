@@ -22,7 +22,6 @@ from eba_benchmarking.ui.tabs.sovereign import render_sovereign_tab
 from eba_benchmarking.ui.tabs.assets import render_assets_tab
 from eba_benchmarking.ui.tabs.liabilities import render_liabilities_tab
 from eba_benchmarking.ui.tabs.liquidity import render_liquidity_tab
-from eba_benchmarking.ui.tabs.market_data import render_market_data_tab
 from eba_benchmarking.ui.tabs.yields import render_yields_tab
 from eba_benchmarking.ui.tabs.country_bench import render_country_bench_tab
 from eba_benchmarking.ui.tabs.benchmarking_dashboard import render_benchmarking_dashboard_tab, render_custom_explorer
@@ -46,19 +45,20 @@ if df_master.empty:
     st.error("⚠️ Database empty or commercial names missing. Run pipeline.")
     st.stop()
 
-# Hardcoded base bank - National Bank of Greece
+# Hardcoded base bank - National Bank of Greece (use LEI for reliable matching)
 # Bank of Cyprus is included in domestic peers as it's listed on ATHEX
-BASE_BANK_NAME = "National Bank of Greece"
+BASE_BANK_LEI = "5UMCZOEYKCVFAW8ZLO05"  # National Bank of Greece
 ATHEX_PEER_LEIS = ['635400L14KNHZXPUZM19']  # Bank of Cyprus Holdings
 
-base_bank_name = BASE_BANK_NAME
-base_row_matches = df_master[df_master['commercial_name'] == base_bank_name]
+base_row_matches = df_master[df_master['lei'] == BASE_BANK_LEI]
 if base_row_matches.empty:
-    st.error(f"⚠️ Base bank '{base_bank_name}' not found in database. Run pipeline.")
+    st.error(f"⚠️ Base bank not found in database. Run pipeline.")
     st.stop()
 
 base_row = base_row_matches.iloc[0]
 base_lei = base_row['lei']
+# Use short_name for display in plots (matches data layer queries)
+base_bank_name = base_row.get('short_name') or base_row.get('commercial_name', 'Unknown')
 base_country = base_row.get('country_iso', 'Unknown')
 base_biz_model = base_row.get('business_model', 'Unknown')
 base_size = base_row.get('size_category', 'Unknown')
@@ -74,25 +74,74 @@ st.sidebar.info(f"""
 """)
 
 peer_strategy = st.sidebar.radio("Peer Group", [
-    "Domestic Peers (incl. BoC)", 
+    "Domestic Peers (incl. BoC)",
+    "Regional (Same Size)",
+    "Regional (All but Small)",
+    "Core (Same Size)",
+    "Core (All but Small)",
+    "CEE (All)",
     "Manual Selection"
 ])
 selected_leis = [base_lei]
+
+CORE_REGIONS = ['Western Europe', 'Northern Europe']
+SMALL_SIZE = 'Small (<50bn)'
 
 if peer_strategy == "Domestic Peers (incl. BoC)":
     # Domestic peers (GR) + Bank of Cyprus (listed on ATHEX)
     peers = df_master[
         (
-            (df_master['country_iso'] == base_country) | 
+            (df_master['country_iso'] == base_country) |
             (df_master['lei'].isin(ATHEX_PEER_LEIS))
-        ) & 
+        ) &
         (df_master['lei'] != base_lei) &
         (df_master['Systemic_Importance'].isin(['GSIB', 'OSII']))
     ]
-    selected_leis.extend(peers.head(9)['lei'].tolist())
+    selected_leis.extend(peers['lei'].tolist())
+
+elif peer_strategy == "Regional (Same Size)":
+    peers = df_master[
+        (df_master['region'] == base_region) &
+        (df_master['size_category'] == base_size) &
+        (df_master['lei'] != base_lei)
+    ]
+    selected_leis.extend(peers['lei'].tolist())
+
+elif peer_strategy == "Regional (All but Small)":
+    peers = df_master[
+        (df_master['region'] == base_region) &
+        (df_master['size_category'] != SMALL_SIZE) &
+        (df_master['lei'] != base_lei)
+    ]
+    selected_leis.extend(peers['lei'].tolist())
+
+elif peer_strategy == "Core (Same Size)":
+    peers = df_master[
+        (df_master['region'].isin(CORE_REGIONS)) &
+        (df_master['size_category'] == base_size) &
+        (df_master['lei'] != base_lei)
+    ]
+    selected_leis.extend(peers['lei'].tolist())
+
+elif peer_strategy == "Core (All but Small)":
+    peers = df_master[
+        (df_master['region'].isin(CORE_REGIONS)) &
+        (df_master['size_category'] != SMALL_SIZE) &
+        (df_master['lei'] != base_lei)
+    ]
+    selected_leis.extend(peers['lei'].tolist())
+
+elif peer_strategy == "CEE (All)":
+    # Database uses 'CEE' for Central and Eastern Europe
+    peers = df_master[
+        (df_master['region'] == 'CEE') &
+        (df_master['lei'] != base_lei)
+    ]
+    selected_leis.extend(peers['lei'].tolist())
+
 elif peer_strategy == "Manual Selection":
     avail = df_master[df_master['lei'] != base_lei]
-    sel = st.sidebar.multiselect("Select Peers (Max 9)", avail['commercial_name'].unique(), max_selections=9)
+    sel = st.sidebar.multiselect("Select Peers", avail['commercial_name'].unique())
     selected_leis.extend(avail[avail['commercial_name'].isin(sel)]['lei'].tolist())
 
 # DASHBOARD
@@ -134,7 +183,6 @@ tabs_list = [
     "Assets",
     "Liabilities",
     "Liquidity",
-    "Market Data",
     "Yields & Funding",
     "Country Benchmarking"
 ]
@@ -187,14 +235,10 @@ with tabs[10]:
 with tabs[11]:
     render_liquidity_tab(selected_leis, base_bank_name, base_country, base_size, base_region, base_sys)
 
-# 12. MARKET DATA TAB
+# 12. YIELDS & FUNDING TAB
 with tabs[12]:
-    render_market_data_tab(selected_leis, base_bank_name)
-
-# 13. YIELDS & FUNDING TAB
-with tabs[13]:
     render_yields_tab(selected_leis, base_bank_name, base_country, base_size, base_region, base_sys)
 
-# 14. COUNTRY BENCHMARKING
-with tabs[14]:
+# 13. COUNTRY BENCHMARKING
+with tabs[13]:
     render_country_bench_tab(base_country, base_bank_name, selected_leis)

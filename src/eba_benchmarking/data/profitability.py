@@ -127,7 +127,7 @@ def get_profitability_kpis(lei_list):
     items_str = "'" + "','".join(items) + "'"
     
     query = f"""
-        SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.amount 
+        SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.amount 
         FROM facts_oth f 
         JOIN institutions i ON f.lei = i.lei 
         WHERE f.lei IN ({leis_str}) 

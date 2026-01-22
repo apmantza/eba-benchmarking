@@ -24,7 +24,7 @@ def get_assets_kpis(lei_list):
         '2521004': 'Designated FVTPL'
     }
     items_str = "'" + "','".join(items.keys()) + "'"
-    query = f"SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.amount FROM facts_oth f JOIN institutions i ON f.lei = i.lei WHERE f.lei IN ({leis_str}) AND f.item_id IN ({items_str}) AND f.period >= '{MIN_PERIOD}'"
+    query = f"SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.amount FROM facts_oth f JOIN institutions i ON f.lei = i.lei WHERE f.lei IN ({leis_str}) AND f.item_id IN ({items_str}) AND f.period >= '{MIN_PERIOD}'"
     try:
         df = pd.read_sql(query, conn); conn.close()
         if df.empty: return pd.DataFrame()

@@ -15,7 +15,7 @@ def get_sovereign_kpis(lei_list):
     items_str = "'" + "','".join(port_map.keys()) + "'"
     mat_map = {1: 0.125, 2: 0.625, 3: 1.5, 4: 2.5, 5: 4.0, 6: 7.5, 7: 15.0}
     query = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.country as country_id, c.label as country_name, c.iso_code as country_iso, i.country_iso as bank_country_iso, f.maturity as maturity_id, m.label as maturity_label, f.amount
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.country as country_id, c.label as country_name, c.iso_code as country_iso, i.country_iso as bank_country_iso, f.maturity as maturity_id, m.label as maturity_label, f.amount
     FROM facts_sov f JOIN institutions i ON f.lei = i.lei LEFT JOIN dim_country c ON f.country = c.country LEFT JOIN dim_maturity m ON f.maturity = m.maturity
     WHERE f.lei IN ({leis_str}) AND f.item_id IN ({items_str}) AND f.period >= '{MIN_PERIOD}' AND f.country != 0 AND f.maturity != 8
     """

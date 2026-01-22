@@ -16,7 +16,7 @@ def get_solvency_kpis(lei_list):
     items_str = "'" + "','".join(items) + "'"
     
     query = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.amount
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.amount
     FROM facts_oth f JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str}) AND f.item_id IN ({items_str}) AND f.period >= '{MIN_PERIOD}'
     """
@@ -279,7 +279,7 @@ def get_rwa_composition(lei_list):
     
     # Query facts_oth (where RWA summary data lives)
     query = f"""
-    SELECT f.lei, i.commercial_name as name, f.period, f.item_id, f.amount
+    SELECT f.lei, COALESCE(i.short_name, i.commercial_name) as name, f.period, f.item_id, f.amount
     FROM facts_oth f
     JOIN institutions i ON f.lei = i.lei
     WHERE f.lei IN ({leis_str}) 
